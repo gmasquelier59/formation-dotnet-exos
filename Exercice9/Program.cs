@@ -12,5 +12,8 @@ int years = int.Parse(Console.ReadLine());
 
 double newCapital = capital * Math.Pow((1 + (rate / 100)), years);
 
-Console.WriteLine($"Le montant des intérêts sera de {Math.Round(newCapital - capital,2)} euros après {years} an{(years > 1 ? 's': '\0')}");
-Console.WriteLine($"Le capital final sera de {Math.Round(newCapital, 2)} euros");
+Console.WriteLine();
+Console.ForegroundColor = ConsoleColor.Yellow;
+Console.WriteLine($"Le montant des intérêts sera de {(newCapital - capital):F2} euros après {years} an{(years > 1 ? 's': '\0')}");
+Console.WriteLine($"Le capital final sera de {newCapital:F2} euros");
+Console.ResetColor();
