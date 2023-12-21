@@ -1,34 +1,34 @@
 ﻿Console.WriteLine("--- Quelle est la nature du triangle ABC ? ---");
 
 Console.Write("Entrez la longueur du segment AB : ");
-if (!double.TryParse(Console.ReadLine(), out double segmentAB))
+if (!double.TryParse(Console.ReadLine(), out double segmentAB) || segmentAB <= 0)
 {
     Console.ForegroundColor = ConsoleColor.Red;
-    Console.Error.WriteLine("La longueur doit être numérique !");
+    Console.Error.WriteLine("La longueur doit être numérique et positif !");
     Console.ResetColor();
     return;
 }
 
 Console.Write("Entrez la longueur du segment BC : ");
-if (!double.TryParse(Console.ReadLine(), out double segmentBC))
+if (!double.TryParse(Console.ReadLine(), out double segmentBC) || segmentBC <= 0)
 {
     Console.ForegroundColor = ConsoleColor.Red;
-    Console.Error.WriteLine("La longueur doit être numérique !");
+    Console.Error.WriteLine("La longueur doit être numérique et positif !");
     Console.ResetColor();
     return;
 }
 
 Console.Write("Entrez la longueur du segment CA : ");
-if (!double.TryParse(Console.ReadLine(), out double segmentCA))
+if (!double.TryParse(Console.ReadLine(), out double segmentCA) || segmentCA <= 0)
 {
     Console.ForegroundColor = ConsoleColor.Red;
-    Console.Error.WriteLine("La longueur doit être numérique !");
+    Console.Error.WriteLine("La longueur doit être numérique et positif !");
     Console.ResetColor();
     return;
 }
 
 Console.ForegroundColor = ConsoleColor.Blue;
-if (segmentAB == segmentBC && segmentBC == segmentCA && segmentAB == segmentCA)
+if (segmentAB == segmentBC && segmentAB == segmentCA)
 {
     Console.WriteLine("Le triangle est équilatéral");
 }

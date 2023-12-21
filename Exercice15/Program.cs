@@ -17,20 +17,20 @@ if (!int.TryParse(Console.ReadLine(), out int age) || age <= 0 || age > 99)
 }
 
 Console.Write("Merci de saisir le nombre d'années d'ancienneté : ");
-if (!int.TryParse(Console.ReadLine(), out int anciennete) || anciennete <= 0 || anciennete > 60)
+if (!int.TryParse(Console.ReadLine(), out int anciennete) || anciennete < 1 || anciennete > 60)
 {
     Console.ForegroundColor = ConsoleColor.Red;
-    Console.Error.WriteLine("Le nombre d'années doit être un nombre entier positif compris entre 1 et 60 !");
+    Console.Error.WriteLine("Le nombre d'années d'ancienneté doit être un nombre entier positif compris entre 1 et 60 !");
     Console.ResetColor();
     return;
 }
 
 int indemnite = 0;
-if (anciennete >= 1 && anciennete <= 10)
+if (anciennete <= 10)
 {
     indemnite = (salaire / 2) * anciennete;
 }
-else if (anciennete > 10)
+else
 {
     indemnite = (salaire / 2) * 10 + salaire * (anciennete - 10);
 }
