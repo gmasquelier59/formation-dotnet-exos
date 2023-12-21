@@ -1,28 +1,45 @@
-﻿string[] boissons = new string[] { "Eau Plate", "Eau Gazeuze", "Coca-Cola", "Fanta", "Sprite", "Orangina", "7Up" };
+﻿Dictionary<string, string> boissons = new Dictionary<string, string>();
+boissons.Add("1", "Eau plate");
+boissons.Add("2", "Eau gazeuze");
+boissons.Add("3", "Coca-cola");
+boissons.Add("4", "Fanta");
+boissons.Add("5", "Sprite");
+boissons.Add("6", "Orangina");
+boissons.Add("7", "7Up");
 
 Console.WriteLine("--- Quelle boisson souhaitez-vous ? ---\n");
 
 Console.WriteLine("Liste des boissons disponibles :\n");
-int indexBoisson = 1;
 Console.ForegroundColor = ConsoleColor.Magenta;
-foreach (string boisson in boissons)
+foreach(KeyValuePair<string, string> boisson in boissons)
 {
-    Console.WriteLine($"\t{indexBoisson}) {boisson}");
-    indexBoisson++;
+    Console.WriteLine($"\t{boisson.Key}) {boisson.Value}");
 }
 Console.ResetColor();
 
-int choixBoisson;
+string choixBoisson;
 while(true)
 {
     Console.WriteLine();
     Console.ForegroundColor = ConsoleColor.Yellow;
-    Console.Write($"Faites votre choix (1 à {boissons.Length}) : ");
+    Console.Write($"Faites votre choix de boisson ([{String.Join(',', boissons.Keys)}] ou [q] pour partir sans boisson) : ");
     Console.ResetColor();
 
-    if (!int.TryParse(Console.ReadLine(), out choixBoisson) || choixBoisson < 1 || choixBoisson > boissons.Length)
+    choixBoisson = Console.ReadLine() ?? "";
+
+    if (choixBoisson == "q")
+    {
+        Console.WriteLine();
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.WriteLine("A bientôt :-)");
+        Console.ResetColor();
+        return;
+    }
+    
+    if (!boissons.Keys.Contains(choixBoisson))
     {
         Console.ForegroundColor = ConsoleColor.Red;
+        Console.Beep();
         Console.Error.WriteLine("Votre choix de boisson est incorrect !");
         Console.ResetColor();
         continue;
@@ -33,5 +50,5 @@ while(true)
 
 Console.WriteLine();
 Console.ForegroundColor = ConsoleColor.Blue;
-Console.WriteLine($"Votre {boissons[choixBoisson - 1]} est servi...");
+Console.WriteLine($"Votre {boissons[choixBoisson]} est servi...");
 Console.ResetColor();
