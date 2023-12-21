@@ -45,4 +45,6 @@ else if ((poids >= 54 && poids <= 59 && taille >= 178 && taille <= 183)
     tailleVetement = 3;
 }
 
-Console.WriteLine($"Prenez la taille {tailleVetement}");
+Console.ForegroundColor = ConsoleColor.Blue;
+Console.WriteLine(tailleVetement == 0 ? "Votre taille de vêtement ne peut pas être déterminée" : $"Prenez la taille {tailleVetement}");
+Console.ResetColor();
