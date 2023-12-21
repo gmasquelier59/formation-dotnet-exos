@@ -27,6 +27,7 @@ if (!double.TryParse(Console.ReadLine(), out double segmentCA))
     return;
 }
 
+Console.ForegroundColor = ConsoleColor.Blue;
 if (segmentAB == segmentBC && segmentBC == segmentCA && segmentAB == segmentCA)
 {
     Console.WriteLine("Le triangle est équilatéral");
@@ -47,3 +48,4 @@ else
 {
     Console.WriteLine("Le triangle n'est ni isocèle en A, ni en B, ni en C");
 }
+Console.ResetColor();
