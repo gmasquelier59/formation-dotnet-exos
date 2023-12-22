@@ -9,22 +9,24 @@ if (!int.TryParse(Console.ReadLine(), out int nombreAAtteindre) || nombreAAttein
     return;
 }
 
-int somme;
-List<int> nombres;
+int iterationsMax = nombreAAtteindre / 2 + 1;
 
 Console.WriteLine("\nLes chaînes possibles sont : ");
 
-for (int i = 1; i <= nombreAAtteindre / 2; i++)
+int somme;
+List<int> nombres;
+for (int i = 1; i <= iterationsMax; i++)
 {
     somme = 0;
     nombres = new List<int>();
-    for(int j = i; j <= nombreAAtteindre; j++)
+    for(int j = i; j <= iterationsMax; j++)
     {
         somme += j;
         nombres.Add(j);
         if (somme == nombreAAtteindre)
         {
             Console.WriteLine(nombreAAtteindre + " = " + String.Join('+', nombres));
+            break;
         }
     }
 }
