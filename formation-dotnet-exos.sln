@@ -61,6 +61,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XmasTree", "XmasTree\XmasTr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercice28", "Exercice28\Exercice28.csproj", "{4DBB87A1-238B-47A4-9B35-6903DC82C7AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercice29", "Exercice29\Exercice29.csproj", "{14AF6FDB-FCD3-4EB5-A41E-075CAA805E0D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -171,6 +173,10 @@ Global
 		{4DBB87A1-238B-47A4-9B35-6903DC82C7AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DBB87A1-238B-47A4-9B35-6903DC82C7AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DBB87A1-238B-47A4-9B35-6903DC82C7AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14AF6FDB-FCD3-4EB5-A41E-075CAA805E0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14AF6FDB-FCD3-4EB5-A41E-075CAA805E0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14AF6FDB-FCD3-4EB5-A41E-075CAA805E0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14AF6FDB-FCD3-4EB5-A41E-075CAA805E0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
