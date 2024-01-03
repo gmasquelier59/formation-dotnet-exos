@@ -3,6 +3,7 @@ Console.WriteLine();
 
 Random random = new Random();
 int mysteryNumber = random.Next(1, 51);
+
 int numberOfTries = 0;
 int userNumber = -1;
 
@@ -25,8 +26,6 @@ while (userNumber != mysteryNumber)
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("\t\tLe nombre mystère est plus petit");
     }
-
-    
 }
 
 Console.ForegroundColor = ConsoleColor.Green;

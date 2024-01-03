@@ -5,7 +5,6 @@ Console.WriteLine("(999 pour calculer)");
 Console.WriteLine();
 
 int numberOfNotes = 1;
-int note = 0;
 int lowestNote = 20;
 int highestNote = 0;
 int sumOfNotes = 0;
@@ -14,7 +13,7 @@ double averageNote;
 while (true)
 {
     Console.Write($"\t- Merci de saisir la note {numberOfNotes} (/20) : ");
-    int.TryParse(Console.ReadLine(), out note);
+    int.TryParse(Console.ReadLine(), out int note);
 
     if (note == 999)
     {
