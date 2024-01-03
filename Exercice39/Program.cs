@@ -1,4 +1,4 @@
-﻿string[] names = {"Kath Holder", "Diane Hatton", "Sandy Grainger", "Jeremy Hutchinson", "Brenda Jamieson", "Mohammad Aldridge", "Natalie Hoare", "Gilbert Tyler", "Craig Jackson", "Eddie FitzGerald", "Isabel Robbins", "Lucy Whittaker", "Kathryn Schofield", "Marcus Hatton", "Roxanne Bowen", "Ernest Cohen", "Maria Franklin", "Faye MacKenzie", "Flora Mohammed", "Ali Clark", "Daren Tattersall", "Sheryl Hayes", "Wayne Dawes", "Edwina Meredith", "Peter Clifford", "Steve Lilley", "Felix Clarkson", "Steph Herbert", "Victoria Brown", "Elisabeth Birch"};
+﻿string[] names = { "Kath Holder", "Diane Hatton", "Sandy Grainger", "Jeremy Hutchinson", "Brenda Jamieson", "Mohammad Aldridge", "Natalie Hoare", "Gilbert Tyler", "Craig Jackson", "Eddie FitzGerald", "Isabel Robbins", "Lucy Whittaker", "Kathryn Schofield", "Marcus Hatton", "Roxanne Bowen", "Ernest Cohen", "Maria Franklin", "Faye MacKenzie", "Flora Mohammed", "Ali Clark", "Daren Tattersall", "Sheryl Hayes", "Wayne Dawes", "Edwina Meredith", "Peter Clifford", "Steve Lilley", "Felix Clarkson", "Steph Herbert", "Victoria Brown", "Elisabeth Birch" };
 
 List<string> availaibleNames = new List<string>(names);
 List<string> choosenNames = new List<string>();
@@ -6,7 +6,7 @@ List<string> choosenNames = new List<string>();
 Console.WriteLine("--- Le grand tirage au sort ---");
 Console.WriteLine();
 
-while(true)
+while (true)
 {
     Console.ForegroundColor = ConsoleColor.Yellow;
     Console.WriteLine("1 --- Effectuer un tirage");
@@ -18,7 +18,7 @@ while(true)
     Console.WriteLine();
     Console.Write("Faites votre choix : ");
     int choice;
-    while(!int.TryParse(Console.ReadLine(), out choice) || choice < 0 || choice > 3)
+    while (!int.TryParse(Console.ReadLine(), out choice) || choice < 0 || choice > 3)
     {
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("\tSaisie incorrecte !");
@@ -96,7 +96,7 @@ while(true)
             }
 
             tabulation = "";
-            foreach(string name in availaibleNames)
+            foreach (string name in availaibleNames)
             {
                 Console.WriteLine(tabulation + name);
                 tabulation += "  ";
