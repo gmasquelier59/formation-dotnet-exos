@@ -1,9 +1,9 @@
-﻿bool VerificationAdn(string chaine)
+﻿bool VerificationAdn(string chaineADN)
 {
-    if (string.IsNullOrEmpty(chaine))
+    if (string.IsNullOrEmpty(chaineADN))
         return false;
 
-    foreach(char letter in chaine)
+    foreach(char letter in chaineADN)
         if (!"atcg".Contains(letter))
             return false;
 
@@ -12,26 +12,26 @@
 
 string SaisieAdn()
 {
-    Console.WriteLine("Merci de saisir la chaîne ADN ci-dessous :");
-    string chaine;
-    chaine = Console.ReadLine()!;
-    while (string.IsNullOrEmpty(chaine) || !VerificationAdn(chaine))
+    Console.WriteLine("Merci de saisir ci-dessous la chaîne ADN  :");
+    string chaineADN;
+    chaineADN = Console.ReadLine()!;
+    while (string.IsNullOrEmpty(chaineADN) || !VerificationAdn(chaineADN))
     {
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("La chaîne ADN n'est pas valide !");
         Console.ResetColor();
-        Console.WriteLine("Merci de saisir la chaîne ADN ci-dessous :");
-        chaine = Console.ReadLine()!;
+        Console.WriteLine("Merci de saisir ci-dessous la chaîne ADN  :");
+        chaineADN = Console.ReadLine()!;
     }
 
-    return chaine;
+    return chaineADN;
 }
 
 int Proportion(string chaine, string sequence)
 {
-    int nbOccurences = chaine.Split(sequence).Length - 1;
+    int nbOccurencesDeSequence = chaine.Split(sequence).Length - 1;
 
-    return (nbOccurences * sequence.Length * 100) / chaine.Length;
+    return (nbOccurencesDeSequence * sequence.Length * 100) / chaine.Length;
 }
 
 string chaineAdn = SaisieAdn();
