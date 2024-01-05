@@ -23,6 +23,10 @@ while (!pendu.TestWin() && nbEssai > 0)
 
     if (!pendu.TestChar($"{lettre}"))
     {
+        Console.Beep(5000, 50);
+        Console.Beep(4000, 50);
+        Console.Beep(3000, 50);
+
         nbEssai--;
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine($"Zut ! Il vous reste maintenant {nbEssai} essai(s) !");
@@ -32,6 +36,10 @@ while (!pendu.TestWin() && nbEssai > 0)
         if (pendu.TestWin())
             break;
 
+        Console.Beep(3000, 50);
+        Console.Beep(4000, 50);
+        Console.Beep(5000, 50);
+        
         Console.ForegroundColor = ConsoleColor.DarkGray;
         Console.WriteLine($"Bien, il vous reste toujours {nbEssai} essai(s) !");
     }
