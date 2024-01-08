@@ -32,7 +32,7 @@ namespace Exercice03.Classes
         {
             NbEssais = nbEssais;
 
-            MotADeviner = GenerateurMotATrouver.ObtenirUnMot();
+            MotADeviner = MotsATrouver.ObtenirUnMot();
         }
 
         /// <summary>
@@ -51,6 +51,7 @@ namespace Exercice03.Classes
                 LettresTrouvees.Add(lettre);
                 return true;
             }
+
             return false;
         }
 

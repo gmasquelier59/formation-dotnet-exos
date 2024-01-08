@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Exercice03.Classes
 {
-    internal static class GenerateurMotATrouver
+    internal static class MotsATrouver
     {
         private static string[] mots = {
             "hippocampe",
