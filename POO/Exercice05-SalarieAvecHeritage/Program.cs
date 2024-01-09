@@ -124,21 +124,17 @@ internal class Program
 
         var nom = Console.Ask<string>("Quel est le nom de l'employé(e) à recherche ?").ToLower();
         Console.WriteLine();
-        bool trouve = false;
-        foreach (Salarie salarie in salaries)
-        {
-            if (salarie.Nom.ToLower().Contains(nom))
+
+        var salariesTrouves = salaries.FindAll(salarie => salarie.Nom.ToLower().Contains(nom));
+
+        if (salariesTrouves.Count > 0)
+            foreach (Salarie salarie in salaries)
             {
-                trouve = true;
                 salarie.AfficherSalaire();
                 Console.WriteLine();
             }
-        }
-
-        if (!trouve)
-        {
+        else
             Console.MarkupLine($"[red]Aucun employé avec le nom {nom}[/]");
-        }
     }
 
     public static void AfficherSalaires(List<Salarie> salaries)
