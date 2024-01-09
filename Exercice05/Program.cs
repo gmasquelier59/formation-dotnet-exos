@@ -16,28 +16,28 @@ internal class Program
 
         while (true)
         {
-            Console.WriteLine("============================");
-            Console.MarkupLine("[yellow][bold]=== Gestion des employés ===[/][/]");
-            Console.WriteLine("============================");
+            Console.Write(new Rule().RuleStyle("red dim"));
+            Console.Write(new Rule("[white bold]Gestion des employés[/]").RuleStyle("red"));
+            Console.Write(new Rule($"[white]{salaries.Count} employé(s)[/]").RuleStyle("red"));
+            Console.Write(new Rule().RuleStyle("red dim"));
             Console.WriteLine();
 
-            string choix = Console.Prompt(
+            List<string> listeChoix = new List<string> {
+                "Ajouter un employé",
+                "Afficher le salaire des employés",
+                "Rechercher un employé",
+                "Quitter"
+            };
+            int choix = listeChoix.IndexOf(Console.Prompt(
                 new SelectionPrompt<string>()
                     .Title("[slowblink]Faites votre choix :[/]")
-                    .AddChoices(new[] {
-                        "1. Ajouter un employé",
-                        "2. Afficher le salaire des employés",
-                        "3. Rechercher un employé",
-                        "0. Quitter"
-                    })).Substring(0, 1);
+                    .AddChoices(listeChoix))) + 1;
 
-            switch (int.Parse(choix))
+            bool attenteAppuiTouche = true;
+            switch (choix)
             {
-                case 0:
-                    Environment.Exit(0);
-                    break;
                 case 1:
-                    AjouterEmploye(salaries);
+                    attenteAppuiTouche = AjouterEmploye(salaries);
                     break;
                 case 2:
                     AfficherSalaires(salaries);
@@ -45,47 +45,70 @@ internal class Program
                 case 3:
                     RechercherEmployer(salaries);
                     break;
+                case 4:
+                    Environment.Exit(0);
+                    break;
             }
 
-            Console.WriteLine();
-            Console.WriteLine("Appuyez sur une touche pour revenir au menu...");
-            System.Console.ReadKey();
+            if (attenteAppuiTouche)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Appuyez sur une touche pour revenir au menu...");
+                System.Console.ReadKey();
+            }
             Console.Clear();
         }
     }
 
-    public static void AjouterEmploye(List<Salarie> salaries)
+    public static bool AjouterEmploye(List<Salarie> salaries)
     {
         Console.MarkupLine("[bold][purple]=== Ajouter un(e) employé(e) ===[/][/]");
         Console.WriteLine();
 
-        string choix = Console.Prompt(
+        List<string> listeChoix = new List<string> {
+            "Commercial",
+            "Autre salarié",
+            "Retour au menu"
+        };
+
+        int choix = listeChoix.IndexOf(Console.Prompt(
             new SelectionPrompt<string>()
                 .Title("[slowblink]Statut du nouvel employé :[/]")
-                .AddChoices(new[] {
-                        "1. Commercial",
-                        "2. Autre salarié",
-                        "0. Retour au menu"
-                })).Substring(0, 1);
+                .AddChoices(listeChoix))) + 1;
 
-        Salarie salarie;
-        switch (int.Parse(choix))
+        switch (choix)
         {
             case 0:
-                return;
+                return false;
             case 1:
-                //  AjouterCommercial();
-                break;
+                AjouterCommercial(salaries);
+                return true;
             case 2:
                 AjouterSalarie(salaries);
-                break;
+                return true;
         }
+
+        return false;
+    }
+
+    public static void AjouterCommercial(List<Salarie> salaries)
+    {
+        var nom = Console.Ask<string>("Nom : ");
+        var salaire = Console.Ask<int>("Salaire de base  (en euros) : ");
+        var chiffreAffaires = Console.Ask<int>("Chiffre d'affaires (en euros) : ");
+        var commission = Console.Ask<int>("Commission (en %) : ");
+
+        Commercial commercial = new Commercial(nom, salaire, chiffreAffaires, commission);
+        salaries.Add(commercial);
+
+        Console.WriteLine("");
+        Console.WriteLine("Le commercial a bien été ajouté !");
     }
 
     public static void AjouterSalarie(List<Salarie> salaries)
     {
         var nom = Console.Ask<string>("Nom : ");
-        var salaire = Console.Ask<int>("Salaire : ");
+        var salaire = Console.Ask<int>("Salaire (en €) : ");
 
         Salarie salarie = new Salarie(nom, salaire);
         salaries.Add(salarie);
