@@ -8,6 +8,6 @@ namespace Exercice07_Figure.Interfaces
 {
     internal interface IDeplacable
     {
-        public void Deplacer(double x, double y);
+        public void Deplacer(int x, int y);
     }
 }

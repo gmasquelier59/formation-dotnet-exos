@@ -9,12 +9,12 @@ namespace Exercice07_Figure.Classes
 {
     internal abstract class Figure : IDeplacable
     {
-        public Point Origine { get; set; }
+        public Point Origine { get; init; }
 
-        public Figure(double x, double y) {
+        public Figure(int x, int y) {
             Origine = new Point(x, y);
         }
-        public void Deplacer(double x, double y)
+        public void Deplacer(int x, int y)
         {
             Origine.Deplacer(x, y);
             CalculerPoints();

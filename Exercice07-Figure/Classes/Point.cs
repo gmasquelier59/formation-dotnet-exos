@@ -8,8 +8,8 @@ namespace Exercice07_Figure.Classes
 {
     internal class Point
     {
-        public double PosX { get; set; }
-        public double PosY { get; set; }
+        public double PosX { get; private set; }
+        public double PosY { get; private set; }
 
         public Point()
         {

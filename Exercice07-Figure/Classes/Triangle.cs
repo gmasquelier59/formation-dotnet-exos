@@ -15,7 +15,7 @@ namespace Exercice07_Figure.Classes
         private Point PointB { get; init; } = new Point();
         private Point PointC { get; init; } = new Point();
 
-        public Triangle(double x, double y, int _base, int hauteur) : base(x, y)
+        public Triangle(int x, int y, int _base, int hauteur) : base(x, y)
         {
             Base = _base;
             Hauteur = hauteur;

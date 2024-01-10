@@ -15,7 +15,7 @@ namespace Exercice07_Figure.Classes
         private Point PointC { get; init; } = new Point();
         private Point PointD { get; init; } = new Point(); 
 
-        public Carre(double x, double y, int cote) : base(x, y)
+        public Carre(int x, int y, int cote) : base(x, y)
         {
             Cote = cote;
 

@@ -16,7 +16,7 @@ namespace Exercice07_Figure.Classes
         private Point PointC { get; init; } = new Point();
         private Point PointD { get; init; } = new Point();
 
-        public Rectangle(double x, double y, int longueur, int largeur) : base(x, y)
+        public Rectangle(int x, int y, int longueur, int largeur) : base(x, y)
         {
             Longueur = longueur;
             Largeur = largeur;
