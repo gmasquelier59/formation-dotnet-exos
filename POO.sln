@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercice04-Citernes", "POO\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercice05_SalariesAvecHeritage", "POO\Exercice05-SalarieAvecHeritage\Exercice05_SalariesAvecHeritage.csproj", "{2012FF82-1BF5-4513-823B-1B51EEBC5098}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercice06-ComptesBancaires", "POO\Exercice06-ComptesBancaires\Exercice06-ComptesBancaires.csproj", "{C988F447-FA22-4138-96D4-5B4A0C08EE64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercice06-ComptesBancaires", "POO\Exercice06-ComptesBancaires\Exercice06-ComptesBancaires.csproj", "{C988F447-FA22-4138-96D4-5B4A0C08EE64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercice07-Figure", "Exercice07-Figure\Exercice07-Figure.csproj", "{44EFFBA8-9CF4-4A98-812F-094759F09640}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{C988F447-FA22-4138-96D4-5B4A0C08EE64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C988F447-FA22-4138-96D4-5B4A0C08EE64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C988F447-FA22-4138-96D4-5B4A0C08EE64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44EFFBA8-9CF4-4A98-812F-094759F09640}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44EFFBA8-9CF4-4A98-812F-094759F09640}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44EFFBA8-9CF4-4A98-812F-094759F09640}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44EFFBA8-9CF4-4A98-812F-094759F09640}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
