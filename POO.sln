@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercice05_SalariesAvecHeri
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercice06-ComptesBancaires", "POO\Exercice06-ComptesBancaires\Exercice06-ComptesBancaires.csproj", "{C988F447-FA22-4138-96D4-5B4A0C08EE64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercice07-Figure", "Exercice07-Figure\Exercice07-Figure.csproj", "{44EFFBA8-9CF4-4A98-812F-094759F09640}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercice07-Figure", "Exercice07-Figure\Exercice07-Figure.csproj", "{44EFFBA8-9CF4-4A98-812F-094759F09640}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercice08-Pile", "Exercice08-Pile\Exercice08-Pile.csproj", "{71C7AC98-181C-43A5-9F22-B23EAE9D5797}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{44EFFBA8-9CF4-4A98-812F-094759F09640}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44EFFBA8-9CF4-4A98-812F-094759F09640}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44EFFBA8-9CF4-4A98-812F-094759F09640}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71C7AC98-181C-43A5-9F22-B23EAE9D5797}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71C7AC98-181C-43A5-9F22-B23EAE9D5797}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71C7AC98-181C-43A5-9F22-B23EAE9D5797}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71C7AC98-181C-43A5-9F22-B23EAE9D5797}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
