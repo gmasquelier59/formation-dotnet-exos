@@ -4,7 +4,7 @@ Console.WriteLine("------------------------");
 Console.WriteLine("--- Liste de strings ---");
 Console.WriteLine("------------------------");
 
-Pile<string> pileString = new Pile<string>(5);
+Pile<string> pileString = new Pile<string>(2);
 pileString.Push("Element A");
 pileString.Push("Element B");
 pileString.Push("Element C");

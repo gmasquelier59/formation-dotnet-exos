@@ -28,7 +28,7 @@ namespace Exercice08_Pile.Classes
         public void Push(T element)
         {
             if (_count == _size - 1)
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("Unable to push : stack is full");
 
             _count++;
             _items[_count - 1] = element;
@@ -37,7 +37,7 @@ namespace Exercice08_Pile.Classes
         public T Pop()
         {
             if (_count == 0)
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("Unable to pop: stack is empty");
 
             T element = _items[_count - 1];
             _items[_count - 1] = default!;
