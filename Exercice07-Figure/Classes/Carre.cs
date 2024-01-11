@@ -13,7 +13,7 @@ namespace Exercice07_Figure.Classes
         private Point PointA { get; init; } = new Point();
         private Point PointB { get; init; } = new Point();
         private Point PointC { get; init; } = new Point();
-        private Point PointD { get; init; } = new Point(); 
+        private Point PointD { get; init; } = new Point();
 
         public Carre(int x, int y, int cote) : base(x, y)
         {
@@ -27,7 +27,7 @@ namespace Exercice07_Figure.Classes
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine("A" + string.Concat(Enumerable.Repeat("─", Cote * 2)) + "B");
-            for(int i=0; i<Cote; i++)
+            for (int i = 0; i < Cote; i++)
                 sb.AppendLine("│" + string.Concat(Enumerable.Repeat(" ", Cote * 2)) + "│");
             sb.AppendLine("D" + string.Concat(Enumerable.Repeat("─", Cote * 2)) + "C");
             sb.AppendLine();

@@ -11,12 +11,12 @@ namespace Exercice07_Figure.Classes
     {
         public Point Origine { get; init; }
 
-        public Figure(int x, int y) {
+        protected Figure(int x, int y) {
             Origine = new Point(x, y);
         }
         public void Deplacer(int x, int y)
         {
-            Origine.Deplacer(x, y);
+            Origine.Deplacer(Origine.PosX + x, Origine.PosY + y);
             CalculerPoints();
         }
         public abstract void CalculerPoints();

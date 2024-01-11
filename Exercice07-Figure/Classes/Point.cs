@@ -8,20 +8,20 @@ namespace Exercice07_Figure.Classes
 {
     internal class Point
     {
-        public double PosX { get; private set; }
-        public double PosY { get; private set; }
+        public int PosX { get; set; }
+        public int PosY { get; set; }
 
         public Point()
         {
             PosX = 0;
             PosY = 0;
         }
-        public Point(double x, double y)
+        public Point(int x, int y)
         {
             PosX = x;
             PosY = y;
         }
-        public void Deplacer(double x, double y)
+        public void Deplacer(int x, int y)
         {
             PosX = x;
             PosY = y;
