@@ -4,7 +4,7 @@ Console.WriteLine("------------------------");
 Console.WriteLine("--- Liste de strings ---");
 Console.WriteLine("------------------------");
 
-Pile<string> pileString = new Pile<string>(2);
+Pile<string> pileString = new Pile<string>(5);
 pileString.Push("Element A");
 pileString.Push("Element B");
 pileString.Push("Element C");
@@ -75,6 +75,9 @@ Console.WriteLine("On ajoute 2 personnes");
 pilePersonnes.Push(new Personne("Jean", "MICHEL", 32));
 pilePersonnes.Push(new Personne("Julie", "SMITH", 69));
 pilePersonnes.Display();
+
+Console.WriteLine();
+Console.WriteLine("Element à la position 2 : " + pilePersonnes[2]);
 
 Console.WriteLine();
 Console.WriteLine("On retire le dernier élément de la liste");

@@ -7,13 +7,24 @@ using System.Threading.Tasks;
 
 namespace Exercice08_Pile.Classes
 {
-    internal class Pile<T> : IEnumerable<T>
+    internal class Pile<T>
     {
         private readonly T[] _items;
         private readonly int _size;
         private int _count;
 
         public int Count { get { return _count; } }
+
+        /// <summary>
+        /// Indexer permettant d'utiliser la notation []
+        /// </summary>
+        /// <param name="i">Index dans la pile</param>
+        /// <returns>L'élément situé à l'index spécifié</returns>
+        public T this[int i]
+        {
+            get { return _items[i]; }
+            set { _items[i] = value; }
+        }
 
         public Pile(int size)
         {
@@ -52,16 +63,6 @@ namespace Exercice08_Pile.Classes
             _count = 0;
         }
 
-        public IEnumerator<T> GetEnumerator()
-        {
-            return ((IEnumerable<T>)(_items.Where(e => e != null && !e.Equals(default(T))).ToArray<T>())).GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-
         public void Display()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -72,8 +73,12 @@ namespace Exercice08_Pile.Classes
             if (this.Count == 0)
                 Console.WriteLine("\t(liste vide)");
             else
-                foreach (var item in this)
+            {
+                T[] elements = _items.Where(e => e != null && !e.Equals(default(T))).ToArray<T>();
+
+                foreach (var item in elements)
                     Console.WriteLine("\t > " + item);
+            }
 
             Console.ResetColor();
         }
