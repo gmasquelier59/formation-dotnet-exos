@@ -6,5 +6,4 @@ internal class Program
     {
         UI.Start();
     }
-
 }

@@ -11,7 +11,7 @@ namespace Exercice01_Etudiants.Classes
 {
     internal class Student
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; private set; }
         public string Name { get; set; }
         public string Firstname { get; set; }
         public int Classroom { get; set; }
@@ -38,13 +38,13 @@ namespace Exercice01_Etudiants.Classes
         {
             using (SqlConnection connection = DbContext.GetConnection())
             {
-                string query = "SELECT * FROM etudiants WHERE id=@id";
+                string query = "SELECT * FROM students WHERE id=@id";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("id", id);
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.Read())
                 {
-                    Student student = new Student(reader.GetGuid("id"), reader.GetString("nom"), reader.GetString("prenom"), reader.GetInt16("classe"), (!reader.IsDBNull("date_diplome") ? DateOnly.FromDateTime(reader.GetDateTime("date_diplome")) : DateOnly.MinValue));
+                    Student student = new Student(reader.GetGuid("id"), reader.GetString("name"), reader.GetString("firstname"), reader.GetInt16("classroom"), (!reader.IsDBNull("graduation_date") ? DateOnly.FromDateTime(reader.GetDateTime("graduation_date")) : DateOnly.MinValue));
                     return student;
                 }
             }
@@ -58,11 +58,11 @@ namespace Exercice01_Etudiants.Classes
 
             using (SqlConnection connection = DbContext.GetConnection())
             {
-                string query = "SELECT * FROM etudiants ORDER BY nom, prenom";
+                string query = "SELECT * FROM students ORDER BY name, firstname";
                 SqlDataReader reader = new SqlCommand(query, connection).ExecuteReader();
                 while (reader.Read())
                 {
-                    Student studient = new Student(reader.GetGuid("id"), reader.GetString("nom"), reader.GetString("prenom"), reader.GetInt16("classe"), (!reader.IsDBNull("date_diplome") ? DateOnly.FromDateTime(reader.GetDateTime("date_diplome")) : DateOnly.MinValue));
+                    Student studient = new Student(reader.GetGuid("id"), reader.GetString("name"), reader.GetString("firstname"), reader.GetInt16("classroom"), (!reader.IsDBNull("graduation_date") ? DateOnly.FromDateTime(reader.GetDateTime("graduation_date")) : DateOnly.MinValue));
                     students.Add(studient);
                 }
             }
@@ -74,13 +74,13 @@ namespace Exercice01_Etudiants.Classes
         {
             using (SqlConnection connection = DbContext.GetConnection())
             {
-                string query = "INSERT INTO etudiants (nom, prenom, classe, date_diplome) VALUES (@name, @firstname, @classroom, @graduationdate)";
+                string query = "INSERT INTO students (name, firstname, classroom, graduation_date) VALUES (@name, @firstname, @classroom, @graduation_date)";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@name", Name);
                 command.Parameters.AddWithValue("@firstname", Firstname);
                 command.Parameters.AddWithValue("@classroom", Classroom);
-                command.Parameters.Add("@graduationdate", SqlDbType.Date).Value = GraduationDate.Equals(DateOnly.MinValue) ? DBNull.Value : GraduationDate;
+                command.Parameters.Add("@graduation_date", SqlDbType.Date).Value = GraduationDate.Equals(DateOnly.MinValue) ? DBNull.Value : GraduationDate;
 
                 command.ExecuteNonQuery();
             }
@@ -90,14 +90,14 @@ namespace Exercice01_Etudiants.Classes
         {
             using (SqlConnection connection = DbContext.GetConnection())
             {
-                string query = "UPDATE etudiants SET nom=@name, prenom=@firstname, classe=@classroom, date_diplome=@graduationdate WHERE id=@id";
+                string query = "UPDATE students SET name=@name, firstname=@firstname, classroom=@classroom, graduation_date=@graduation_date WHERE id=@id";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.Add("id", System.Data.SqlDbType.UniqueIdentifier).Value = Id;
                 command.Parameters.AddWithValue("@name", Name);
                 command.Parameters.AddWithValue("@firstname", Firstname);
                 command.Parameters.AddWithValue("@classroom", Classroom);
-                command.Parameters.Add("@graduationdate", SqlDbType.Date).Value = GraduationDate.Equals(DateOnly.MinValue) ? DBNull.Value : GraduationDate;
+                command.Parameters.Add("@graduation_date", SqlDbType.Date).Value = GraduationDate.Equals(DateOnly.MinValue) ? DBNull.Value : GraduationDate;
 
                 command.ExecuteNonQuery();
             }
@@ -112,7 +112,7 @@ namespace Exercice01_Etudiants.Classes
         {
             using (SqlConnection connection = DbContext.GetConnection())
             {
-                string query = "DELETE FROM etudiants WHERE id=@id";
+                string query = "DELETE FROM students WHERE id=@id";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.Add("id", System.Data.SqlDbType.UniqueIdentifier).Value = id;
                 command.ExecuteNonQuery();
@@ -123,7 +123,7 @@ namespace Exercice01_Etudiants.Classes
         {
             using (SqlConnection connection = DbContext.GetConnection())
             {
-                string query = "DELETE FROM etudiants";
+                string query = "DELETE FROM students";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.ExecuteNonQuery();
             }
