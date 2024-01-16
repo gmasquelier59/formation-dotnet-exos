@@ -1,7 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
-using System.Data;
-using Spectre.Console;
-using System.Text;
+﻿using Spectre.Console;
 
 namespace Exercice01_Etudiants.Classes
 {
@@ -12,6 +9,7 @@ namespace Exercice01_Etudiants.Classes
             string[] menu = {
                 "Ajouter un(e) étudiant(e)",
                 "Modifier un(e) étudiant(e)",
+                "Rechercher un(e) étudiant(e) par le numéro de  classe",
                 "Supprimer un(e) étudiant(e)",
                 "Supprimer tous les étudiants",
                 "Afficher la liste des étudiants",
@@ -35,15 +33,18 @@ namespace Exercice01_Etudiants.Classes
                         UpdateStudent();
                         break;
                     case 2:
-                        DeleteStudent();
+                        FindStudentByClassroom();
                         break;
                     case 3:
-                        DeleteAllStudents();
+                        DeleteStudent();
                         break;
                     case 4:
-                        ShowStudents();
+                        DeleteAllStudents();
                         break;
                     case 5:
+                        ShowStudents();
+                        break;
+                    case 6:
                         return;
                 }
 
@@ -52,6 +53,18 @@ namespace Exercice01_Etudiants.Classes
                 Console.ReadKey();
                 AnsiConsole.Clear();
             }
+        }
+
+        private static void FindStudentByClassroom()
+        {
+            AnsiConsole.MarkupLine("[yellow]Rechercher des étudiant(e) par le numéro de classe[/]");
+            AnsiConsole.WriteLine();
+
+            int classroom = AnsiConsole.Ask<int>("[green]Numéro de classe[/] à rechercher (compris entre 1 et 10) ?");
+            AnsiConsole.WriteLine();
+
+            List<Student> students = Student.FindByClassroom(classroom);
+            ShowStudentsTable(students);
         }
 
         private static void UpdateStudent()
@@ -129,7 +142,7 @@ namespace Exercice01_Etudiants.Classes
                 }
             }
             else
-                AnsiConsole.MarkupLine("[green]Aucun étudant n'a été supprimé[/]");
+                AnsiConsole.MarkupLine("[green]Aucun étudiant n'a été supprimé[/]");
         }
 
         private static void DeleteStudent()
@@ -186,6 +199,12 @@ namespace Exercice01_Etudiants.Classes
             AnsiConsole.MarkupLine("[blue]Liste des étudiant(e)s[/]");
             AnsiConsole.WriteLine();
 
+            List<Student> students = Student.All();
+            ShowStudentsTable(students);
+        }
+
+        private static void ShowStudentsTable(List<Student> students)
+        {
             var table = new Table();
             table.AddColumn("Identifiant");
             table.AddColumn("Nom");
@@ -193,20 +212,18 @@ namespace Exercice01_Etudiants.Classes
             table.AddColumn("Classe");
             table.AddColumn("Date du diplôme");
 
-            List<Student> students = Student.All();
-
             AnsiConsole.MarkupLine($"[yellow]{students.Count} étudiant(s)[/]");
             AnsiConsole.WriteLine();
 
             foreach (Student student in students)
             {
                 table.AddRow(new string[] {
-                student.Id.ToString(),
-                student.Name,
-                student.Firstname,
-                student.Classroom.ToString(),
-                !student.GraduationDate.Equals(DateOnly.MinValue) ? student.GraduationDate.ToString("dd/MM/yyyy") : ""
-            });
+                    student.Id.ToString(),
+                    student.Name,
+                    student.Firstname,
+                    student.Classroom.ToString(),
+                    !student.GraduationDate.Equals(DateOnly.MinValue) ? student.GraduationDate.ToString("dd/MM/yyyy") : ""
+                });
             }
 
             AnsiConsole.Write(table);

@@ -70,6 +70,27 @@ namespace Exercice01_Etudiants.Classes
             return students;
         }
 
+        public static List<Student> FindByClassroom(int classroom)
+        {
+            List<Student> students = new List<Student>();
+
+            using (SqlConnection connection = DbContext.GetConnection())
+            {
+                string query = "SELECT * FROM students WHERE classroom=@classroom ORDER BY name, firstname";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@classroom", classroom);
+
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Student studient = new Student(reader.GetGuid("id"), reader.GetString("name"), reader.GetString("firstname"), reader.GetInt16("classroom"), (!reader.IsDBNull("graduation_date") ? DateOnly.FromDateTime(reader.GetDateTime("graduation_date")) : DateOnly.MinValue));
+                    students.Add(studient);
+                }
+            }
+
+            return students;
+        }
+
         public void Save()
         {
             using (SqlConnection connection = DbContext.GetConnection())
