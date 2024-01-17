@@ -77,7 +77,7 @@ namespace Exercice01_Etudiants.Classes
             List<Student> students = Student.All();
 
             foreach (Student studentItem in students)
-                menu.Add($"{studentItem.Id.ToString()} {studentItem.Name} {studentItem.Firstname}");
+                menu.Add(studentItem.ToString());
 
             if (menu.Count == 0)
             {
@@ -92,7 +92,7 @@ namespace Exercice01_Etudiants.Classes
                     .AddChoices(menu)
             ));
 
-            if (choice == menu.Count)
+            if (choice == menu.Count - 1)
                 return;
 
             string studentId = menu[choice].Split(" ")[0];
@@ -110,7 +110,7 @@ namespace Exercice01_Etudiants.Classes
                 student.Firstname = firstname;
                 student.Classroom = classroom;
                 student.GraduationDate = string.IsNullOrEmpty(graduationDate) ? DateOnly.MinValue : DateOnly.Parse(graduationDate);
-                student.Update();
+                student.Save();
                 AnsiConsole.WriteLine();
                 AnsiConsole.MarkupLine("[green]L'étudiant(e) a bien été modifié(e) ![/]");
             }
@@ -155,7 +155,7 @@ namespace Exercice01_Etudiants.Classes
             List<Student> students = Student.All();
 
             foreach (Student studentItem in students)
-                menu.Add($"{studentItem.Id.ToString()} {studentItem.Name} {studentItem.Firstname}");
+                menu.Add(studentItem.ToString());
 
             if (menu.Count == 0)
             {
@@ -170,7 +170,7 @@ namespace Exercice01_Etudiants.Classes
                     .AddChoices(menu)
             ));
 
-            if (choice == menu.Count)
+            if (choice == menu.Count - 1)
                 return;
 
             string studentId = menu[choice].Split(" ")[0];

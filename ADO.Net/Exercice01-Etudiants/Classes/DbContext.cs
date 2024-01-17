@@ -9,7 +9,7 @@ namespace Exercice01_Etudiants.Classes
 {
     internal static class DbContext
     {
-        public static string DbConnectionString = "Data Source=(localdb)\\M2I; Database=Exercice01";
+        private static readonly string DbConnectionString = "Data Source=(localdb)\\M2I; Database=Exercice01";
 
         public static SqlConnection GetConnection()
         {
