@@ -1,0 +1,18 @@
+USE Boutique;
+
+CREATE TABLE clients (
+	client_id INT PRIMARY KEY NOT NULL IDENTITY(1,1),
+	name VARCHAR(255) NOT NULL,
+	firstname VARCHAR(255) NOT NULL,
+	address VARCHAR(255) NOT NULL,
+	address_zip VARCHAR(255) NOT NULL,
+	address_city VARCHAR(255) NOT NULL,
+	phone VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE orders (
+	order_id INT PRIMARY KEY NOT NULL IDENTITY(1,1),
+	client_id INT NOT NULL FOREIGN KEY REFERENCES clients(client_id) ON DELETE CASCADE,
+	order_date DATETIME NOT NULL,
+	total DECIMAL(18,2) NOT NULL,
+);
