@@ -15,7 +15,7 @@ namespace Exercice02_Commandes.Classes
         public string AddressZip { get; set; }
         public string AddressCity { get; set; }
         public string Phone {  get; set; }
-        public List<Order> Orders { get; set; } = new List<Order>();
+        public List<Order> Orders { get; } = new List<Order>();
 
         public Client(string name, string firstname, string address, string addressZip, string addressCity, string phone)
         {
