@@ -9,7 +9,7 @@ using System.Reflection.PortableExecutable;
 
 namespace Exercice02_Commandes.Classes.DAO
 {
-    internal class OrderDAO : IDAOBase<Order>
+    internal class OrderDAO : IBaseDAO<Order>
     {
         public static List<Order> All()
         {
@@ -116,7 +116,7 @@ namespace Exercice02_Commandes.Classes.DAO
             return order;
         }
 
-        private static Order? CreateFromReader(SqlDataReader reader)
+        public static Order? CreateFromReader(SqlDataReader reader)
         {
             if (reader.IsClosed)
                 return null;

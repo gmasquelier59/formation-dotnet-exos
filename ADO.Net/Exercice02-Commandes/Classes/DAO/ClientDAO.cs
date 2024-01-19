@@ -9,7 +9,7 @@ using System.Reflection.PortableExecutable;
 
 namespace Exercice02_Commandes.Classes.DAO
 {
-    internal class ClientDAO : IDAOBase<Client>
+    internal class ClientDAO : IBaseDAO<Client>
     {
         public static List<Client> All()
         {
@@ -64,7 +64,10 @@ namespace Exercice02_Commandes.Classes.DAO
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     if (reader.Read())
+                    {
                         client = CreateFromReader(reader);
+
+                    }
                 }
             }
 
@@ -114,7 +117,7 @@ namespace Exercice02_Commandes.Classes.DAO
             }
         }
 
-        private static Client? CreateFromReader(SqlDataReader reader)
+        public static Client? CreateFromReader(SqlDataReader reader)
         {
             if (reader.IsClosed)
                 return null;
