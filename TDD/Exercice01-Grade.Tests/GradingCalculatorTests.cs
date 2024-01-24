@@ -28,7 +28,25 @@ namespace Exercice01_Grade.Tests
             return _gradingCalculator.GetGrade();
         }
 
-        //  Seconde manière de faire le test avec un TestCaseSource
+        //  Seconde manière de faire le test avec un TestCase
+
+        [Test]
+        [TestCase(95, 90, 'A')]
+        [TestCase(85, 90, 'B')]
+        [TestCase(65, 90, 'C')]
+        [TestCase(95, 65, 'B')]
+        [TestCase(95, 55, 'F')]
+        [TestCase(65, 55, 'F')]
+        [TestCase(50, 90, 'F')]
+        public void Should_GetGrade_InputScoreAndPercentage_GetRightGrade_TestCaseVoid(int score, int attendancePercentage, char grade)
+        {
+            _gradingCalculator.Score = score;
+            _gradingCalculator.AttendancePercentage = attendancePercentage;
+
+            Assert.That(_gradingCalculator.GetGrade(), Is.EqualTo(grade));
+        }
+
+        //  Troisième manière de faire le test avec un TestCaseSource
 
         public static object[] GradeCases =
         {
