@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercice01-Grade", "TDD\Exercice01-Grade\Exercice01-Grade.csproj", "{AF011E8E-E54D-465D-A635-C84187F700B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercice01-Grade.Tests", "TDD\Exercice01-Grade.Tests\Exercice01-Grade.Tests.csproj", "{13C22926-3DC5-4749-A7D5-954F6ECEB36A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF011E8E-E54D-465D-A635-C84187F700B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF011E8E-E54D-465D-A635-C84187F700B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF011E8E-E54D-465D-A635-C84187F700B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF011E8E-E54D-465D-A635-C84187F700B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13C22926-3DC5-4749-A7D5-954F6ECEB36A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13C22926-3DC5-4749-A7D5-954F6ECEB36A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13C22926-3DC5-4749-A7D5-954F6ECEB36A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13C22926-3DC5-4749-A7D5-954F6ECEB36A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4E402CEA-C800-4016-9D20-29E3AD00D395}
+	EndGlobalSection
+EndGlobal
