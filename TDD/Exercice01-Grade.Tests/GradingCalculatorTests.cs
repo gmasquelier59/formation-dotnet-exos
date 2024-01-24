@@ -1,6 +1,6 @@
 namespace Exercice01_Grade.Tests
 {
-    public class Tests
+    public class GradingCalculatorTests
     {
         private GradingCalculator _gradingCalculator;
 
