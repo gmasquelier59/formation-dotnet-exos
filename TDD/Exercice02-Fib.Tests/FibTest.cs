@@ -1,6 +1,3 @@
-using Exercice02_Fib;
-using System.Linq;
-
 namespace Exercice02_Fib.Tests
 {
     public class FibTest
@@ -12,7 +9,7 @@ namespace Exercice02_Fib.Tests
 
             List<int> result = fib.GetFibSeries();
 
-            Assert.NotEqual(0, result.Count);
+            Assert.NotEmpty(result);
         }
 
         [Fact]
