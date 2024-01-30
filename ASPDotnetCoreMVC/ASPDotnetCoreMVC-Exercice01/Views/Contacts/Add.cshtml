@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Nouveau contact";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+    <form>
+        <div class="pt-4">
+            <p>Les champs marqués * sont obligatoires</p>
+            <div class="row g-3 pb-4">
+                <div class="col-sm-6">
+                    <label for="firstName" class="form-label">Prénom *</label>
+                    <input type="text" class="form-control" id="firstName" value="" required>
+                </div>
+                <div class="col-sm-6">
+                    <label for="lastName" class="form-label">Nom *</label>
+                    <input type="text" class="form-control" id="lastName" value="" required>
+                </div>
+            </div>
+            <div class="row g-3">
+                <div class="col-sm-6">
+                    <label for="email" class="form-label">Email *</label>
+                    <input type="email" class="form-control" id="email" value="" required>
+                </div>
+                <div class="col-sm-6">
+                    <label for="phone" class="form-label">Numéro de téléphone</label>
+                    <input type="text" class="form-control" id="phone" value="">
+                </div>
+            </div>
+        </div>
+        <div class="row pt-4">
+            <div class="col-6">
+                <button class="w-100 btn btn-primary btn-lg" type="submit">Enregistrer</button>
+            </div>
+            <div class="col-6">
+                <a class="w-100 btn btn-secondary btn-lg" asp-action="Index">Annuler</a>
+            </div>
+        </div>
+    </form>
+</div>
