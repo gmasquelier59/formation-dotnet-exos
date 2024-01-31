@@ -1,0 +1,50 @@
+﻿@model MarmosetModel
+@{
+    MarmosetModel marmoset = Model;
+    ViewData["Title"] = "Details for " + marmoset.Name;
+}
+
+@if (marmoset == null)
+{
+    <div class="alert alert-danger" role="alert">
+        Le marmoset n'existe pas.
+    </div>
+}
+else
+{
+    <div class="container pt-4">
+        <div class="card mb-3">
+            <div class="row g-0">
+                @if (!String.IsNullOrEmpty(marmoset.Photo))
+                {
+                    <div class="col-md-4">
+                        <img src="@marmoset.Photo" class="img-fluid rounded-start" alt="@marmoset.Name">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">@marmoset.Name</h5>
+                            <p class="card-text">@marmoset.Description</p>
+                            @if (!String.IsNullOrEmpty(marmoset.Areas))
+                            {
+                                <p class="card-text"><small class="text-body-secondary">@Html.DisplayNameFor(m => m.Areas) : @marmoset.Areas</small></p>
+                            }
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-md-12">
+                        <div class="card-body">
+                            <h5 class="card-title">@marmoset.Name</h5>
+                            <p class="card-text">@marmoset.Description</p>
+                            @if (!String.IsNullOrEmpty(marmoset.Areas))
+                            {
+                                <p class="card-text"><small class="text-body-secondary">@Html.DisplayNameFor(m => m.Areas) : @marmoset.Areas</small></p>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
