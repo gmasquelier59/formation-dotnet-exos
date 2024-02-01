@@ -7,11 +7,11 @@ namespace ASPDotnetCoreMVC_Exercice04.Controllers
 {
     public class MarmosetController : Controller
     {
-        private readonly MarmosetsRepository _repository;
+        private readonly IMarmosetsRepository _repository;
 
-        public MarmosetController(ApplicationDbContext dbContext)
+        public MarmosetController(IMarmosetsRepository repository)
         {
-            _repository = new MarmosetsRepository(dbContext);
+            _repository = repository;
         }
 
         public IActionResult Index()

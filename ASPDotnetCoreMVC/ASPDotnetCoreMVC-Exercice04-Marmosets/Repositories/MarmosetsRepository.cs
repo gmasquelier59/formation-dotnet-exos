@@ -3,7 +3,7 @@ using ASPDotnetCoreMVC_Exercice04.Models;
 
 namespace ASPDotnetCoreMVC_Exercice04.Repositories
 {
-    public class MarmosetsRepository
+    public class MarmosetsRepository : IMarmosetsRepository
     {
         private ApplicationDbContext _dbContext;
 

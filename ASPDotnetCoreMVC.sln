@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASPDotnetCoreMVC-Exercice01", "ASPDotnetCoreMVC\ASPDotnetCoreMVC-Exercice01\ASPDotnetCoreMVC-Exercice01.csproj", "{BE4042E4-4971-4C2F-BD64-AC4406BCE3D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASPDotnetCoreMVC-Exercice04", "ASPDotnetCoreMVC\ASPDotnetCoreMVC-Exercice04\ASPDotnetCoreMVC-Exercice04.csproj", "{1D81CC4C-1E88-499F-B054-255A458E7156}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASPDotnetCoreMVC-Exercice04-Marmosets", "ASPDotnetCoreMVC\ASPDotnetCoreMVC-Exercice04-Marmosets\ASPDotnetCoreMVC-Exercice04-Marmosets.csproj", "{1D81CC4C-1E88-499F-B054-255A458E7156}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

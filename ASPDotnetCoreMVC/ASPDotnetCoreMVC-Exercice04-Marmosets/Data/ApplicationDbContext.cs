@@ -1,6 +1,5 @@
 ﻿using ASPDotnetCoreMVC_Exercice04.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
 
 namespace ASPDotnetCoreMVC_Exercice04.Data
 {

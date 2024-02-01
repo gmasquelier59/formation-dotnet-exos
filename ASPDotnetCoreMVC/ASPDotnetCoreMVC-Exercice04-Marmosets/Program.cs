@@ -12,6 +12,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MarmosetsConnection"))
 );
 
+builder.Services.AddScoped<IMarmosetsRepository, MarmosetsRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
