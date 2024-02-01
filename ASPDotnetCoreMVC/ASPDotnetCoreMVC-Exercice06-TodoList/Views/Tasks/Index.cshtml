@@ -1,0 +1,53 @@
+﻿@model List<TaskModel>
+@{
+    List<TaskModel> tasks = Model;
+}
+
+<h1 class="mb-4">Todo List</h1>
+
+<a asp-action="CreateForm" class="btn btn-primary mb-3 mt-3">Ajouter une nouvelle tâche</a>
+
+@if (tasks.Count == 0)
+{
+    <div class="alert alert-warning">
+        Vous n'avez aucune tâche pour le moment 👍
+    </div>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">@Html.DisplayNameForInnerType((TaskModel t) => t.Id)</th>
+                <th scope="col">@Html.DisplayNameForInnerType((TaskModel t) => t.Title)</th>
+                <th scope="col">@Html.DisplayNameForInnerType((TaskModel t) => t.Description)</th>
+                <th scope="col">@Html.DisplayNameForInnerType((TaskModel t) => t.Status)</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (TaskModel task in tasks)
+            {
+                <tr>
+                    <th scope="row">@task.Id</th>
+                    <td>@task.Title</td>
+                    <td>@task.Description</td>
+                    <td>
+                        @if (task.Status == ASPDotnetCoreMVC_Exercice06_TodoList.Models.TaskStatus.Opened)
+                        {
+                            <a asp-action="ChangeStatus" asp-route-id="@task.Id" asp-route-status="@ASPDotnetCoreMVC_Exercice06_TodoList.Models.TaskStatus.Closed" class="btn btn-success" title="Passer la tâche en [terminée]">En cours</a>
+                        }
+                        else
+                        {
+                            <a asp-action="ChangeStatus" asp-route-id="@task.Id" asp-route-status="@ASPDotnetCoreMVC_Exercice06_TodoList.Models.TaskStatus.Opened" class="btn btn-dark" title="Passer la tâche en [en cours]">Terminé</a>
+                        }
+                    </td>
+                    <td>
+                        <a asp-action="CreateForm" asp-route-id="@task.Id" class="btn btn-outline-warning">Modifier</a>
+                        <a asp-action="Delete" asp-route-id="@task.Id" class="btn btn-outline-danger">Supprimer</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
