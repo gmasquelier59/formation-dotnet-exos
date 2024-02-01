@@ -1,11 +1,16 @@
 using ASPDotnetCoreMVC_Exercice04.Data;
+using ASPDotnetCoreMVC_Exercice04.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddSingleton<MarmosetsFakeDb>();
+//  builder.Services.AddSingleton<MarmosetsFakeDb>();
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MarmosetsConnection"))
+);
 
 var app = builder.Build();
 

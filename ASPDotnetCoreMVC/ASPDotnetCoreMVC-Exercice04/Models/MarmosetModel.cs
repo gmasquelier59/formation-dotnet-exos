@@ -17,8 +17,29 @@ namespace ASPDotnetCoreMVC_Exercice04.Models
 
         public MarmosetModel()
         {
-            Name = StringGenerator.Generate();
+            Name = StringGenerator.GetRandomName();
             Description = StringGenerator.Generate(length: 500);
+
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = client.GetAsync("https://loremflickr.com/500/500/monkey?random=" + new Random().Next(1, 100000), HttpCompletionOption.ResponseHeadersRead).Result;
+
+            Photo = response.RequestMessage.RequestUri.ToString();
+        }
+
+        public static MarmosetModel New()
+        {
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = client.GetAsync("https://loremflickr.com/500/500/monkey?random=" + new Random().Next(1, 100000), HttpCompletionOption.ResponseHeadersRead).Result;
+            string photoUrl = response.RequestMessage.RequestUri.ToString();
+
+            MarmosetModel marmoset = new MarmosetModel()
+            {
+                Name = StringGenerator.GetRandomName(),
+                Description = StringGenerator.Generate(length: 500),
+                Photo = photoUrl
+            };
+
+            return marmoset;
         }
     }
 }
