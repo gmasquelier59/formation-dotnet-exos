@@ -1,0 +1,78 @@
+﻿@model List<MarmosetModel>
+@{
+    List<MarmosetModel> marmosets = Model;
+}
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<section class="text-center container">
+    <div class="row py-lg-3">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">Marmosets</h1>
+            <p class="lead text-body-secondary">The marmosets (/ˈmɑːrməˌzɛts, -ˌsɛts/), also known as zaris or sagoin, are twenty-two New World monkey species of the genera Callithrix, Cebuella, Callibella, and Mico. All four genera are part of the biological family Callitrichidae. The term "marmoset" is also used in reference to Goeldi's marmoset, Callimico goeldii, which is closely related.</p>
+        </div>
+    </div>
+</section>
+
+<div class="table-responsive small">
+    @if (marmosets.Count == 0)
+    {
+        <div class="alert alert-warning" role="alert">
+            Aucun marmoset pour le moment
+        </div>
+    }
+    else
+    {
+        <div class="album py-5 bg-body-tertiary">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-sm-1 row-cols-md-4 g-3">
+                    @foreach (MarmosetModel marmoset in marmosets)
+                    {
+                        <div class="col">
+                            <div class="card">
+                                @if (!String.IsNullOrEmpty(marmoset.Photo))
+                                {
+                                    <a asp-action="Details" asp-route-id="@marmoset.Id"><img src="@marmoset.Photo" class="card-img-top" alt="@marmoset.Name"></a>
+                                }
+                                <div class="card-body">
+                                    <h5 class="card-title">@marmoset.Name</h5>
+                                    <p class="card-text">@(marmoset.Description.Substring(0, 200) + "[...]")</p>
+
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <a asp-action="Details" asp-route-id="@marmoset.Id" class="btn btn-primary">See</a>
+                                        <a asp-action="Delete" asp-route-id="@marmoset.Id" onclick="document.getElementById('btnConfirm').href=this.href; document.getElementById('modalMarmosetName').innerText = '@marmoset.Name'" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-outline-danger pull">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="container mt-4">
+                <div class="row">
+                    <a asp-action="CreateRandom" class="btn btn-outline-primary">Create a random Marmoset</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Supprimer un marmoset</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <span class="text-danger fw-bold">Attention, la suppression est définitive et ne peut pas être annulée</span>.<br /><br />Voulez-vous vraiment supprimer le marmoset "<strong><span id="modalMarmosetName"></span></strong>" ?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <a id="btnConfirm" href="" class="btn btn-primary">Supprimer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
