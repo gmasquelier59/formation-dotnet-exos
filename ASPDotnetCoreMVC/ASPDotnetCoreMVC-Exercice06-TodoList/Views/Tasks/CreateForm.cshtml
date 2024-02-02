@@ -2,7 +2,9 @@
 
 @{
     TaskModel task = Model;
-    string[] Status = new[] {ASPDotnetCoreMVC_Exercice06_TodoList.Models.TaskStatus.Opened.ToString(), ASPDotnetCoreMVC_Exercice06_TodoList.Models.TaskStatus.Closed.ToString()};
+    string[] Status = new[] { ASPDotnetCoreMVC_Exercice06_TodoList.Models.TaskStatus.Opened.ToString(), ASPDotnetCoreMVC_Exercice06_TodoList.Models.TaskStatus.Closed.ToString() };
+
+    ViewData["title"] = (task == null ? "Ajouter une tâche" : "Modifier une tâche");
 }
 
 @section scripts {
@@ -39,6 +41,11 @@
 
             <span asp-validation-for="Status" class="text-danger"></span>
         </div>
-        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <div class="row">
+            <div class="col-12 text-end">
+                <a asp-action="Index" class="btn btn-light me-4">Annuler</a>
+                <button type="submit" class="btn btn-primary">@(task == null ? "Ajouter" : "Modifier")</button>
+            </div>
+        </div>
     </form>
 </div>

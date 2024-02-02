@@ -1,53 +1,92 @@
 ﻿@model List<TaskModel>
 @{
     List<TaskModel> tasks = Model;
+
+    ViewData["title"] = $"Mes tâches ({tasks.Count})";
 }
 
-<h1 class="mb-4">Todo List</h1>
+<h1 class="mb-4">@ViewData["title"]</h1>
 
-<a asp-action="CreateForm" class="btn btn-primary mb-3 mt-3">Ajouter une nouvelle tâche</a>
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-12 text-end">
+            <a asp-action="CreateForm" class="btn btn-primary mb-3 mt-3"><i class="bi bi-plus-circle"></i> Ajouter une nouvelle tâche</a>
+        </div>
+    </div>
+</div>
 
 @if (tasks.Count == 0)
 {
-    <div class="alert alert-warning">
-        Vous n'avez aucune tâche pour le moment 👍
+    <div class="alert alert-success">
+        Parfait, vous n'avez rien de prévu à faire 👍
     </div>
 }
 else
 {
-    <table class="table">
+    <table class="table table-responsive-l">
         <thead>
             <tr>
                 <th scope="col">@Html.DisplayNameForInnerType((TaskModel t) => t.Id)</th>
+                <th scope="col" class="text-center">@Html.DisplayNameForInnerType((TaskModel t) => t.Status)</th>
                 <th scope="col">@Html.DisplayNameForInnerType((TaskModel t) => t.Title)</th>
                 <th scope="col">@Html.DisplayNameForInnerType((TaskModel t) => t.Description)</th>
-                <th scope="col">@Html.DisplayNameForInnerType((TaskModel t) => t.Status)</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach (TaskModel task in tasks)
             {
-                <tr>
-                    <th scope="row">@task.Id</th>
-                    <td>@task.Title</td>
-                    <td>@task.Description</td>
-                    <td>
+                string rowColor = "", icon = "", label = "";
+                switch (task.Status)
+                {
+                    case ASPDotnetCoreMVC_Exercice06_TodoList.Models.TaskStatus.Opened:
+                        rowColor = "table-warning";
+                        icon = "text-warning bi-hourglass-split";
+                        label = "En cours";
+                        break;
+                    case ASPDotnetCoreMVC_Exercice06_TodoList.Models.TaskStatus.Closed:
+                        rowColor = "table-success";
+                        icon = "text-success bi-check-circle-fill";
+                        label = "Terminée";
+                        break;
+                }
+                <tr class="@rowColor">
+                    <th scope="row" class="align-middle">@task.Id</th>
+                    <td class="align-middle text-center" title="@label"><i class="bi @icon"></i></td>
+                    <td class="align-middle">@task.Title</td>
+                    <td class="align-middle">@task.Description</td>
+                    <td class="align-middle">
                         @if (task.Status == ASPDotnetCoreMVC_Exercice06_TodoList.Models.TaskStatus.Opened)
                         {
-                            <a asp-action="ChangeStatus" asp-route-id="@task.Id" asp-route-status="@ASPDotnetCoreMVC_Exercice06_TodoList.Models.TaskStatus.Closed" class="btn btn-success" title="Passer la tâche en [terminée]">En cours</a>
+                            <a asp-action="ChangeStatus" asp-route-id="@task.Id" asp-route-status="@ASPDotnetCoreMVC_Exercice06_TodoList.Models.TaskStatus.Closed" class="btn btn-info" title="Marquer comme [terminée]"><i class="bi bi-check-circle-fill"></i></a>
                         }
                         else
                         {
-                            <a asp-action="ChangeStatus" asp-route-id="@task.Id" asp-route-status="@ASPDotnetCoreMVC_Exercice06_TodoList.Models.TaskStatus.Opened" class="btn btn-dark" title="Passer la tâche en [en cours]">Terminé</a>
+                            <a asp-action="ChangeStatus" asp-route-id="@task.Id" asp-route-status="@ASPDotnetCoreMVC_Exercice06_TodoList.Models.TaskStatus.Opened" class="btn btn-info" title="Marquer comme [en cours]"><i class="bi bi-hourglass-split"></i></a>
                         }
-                    </td>
-                    <td>
-                        <a asp-action="CreateForm" asp-route-id="@task.Id" class="btn btn-outline-warning">Modifier</a>
-                        <a asp-action="Delete" asp-route-id="@task.Id" class="btn btn-outline-danger">Supprimer</a>
+                        <a asp-action="CreateForm" asp-route-id="@task.Id" class="btn btn-warning" title="Modifier"><i class="bi bi-pencil-fill"></i></a>
+                        <a asp-action="Delete" asp-route-id="@task.Id" class="btn btn-danger" title="Supprimer" onclick="document.getElementById('btnConfirm').href=this.href; document.getElementById('modalTaskName').innerText = '@task.Title'" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-trash-fill"></i></a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 }
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Supprimer une tâche</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+            </div>
+            <div class="modal-body">
+                <span class="text-danger fw-bold">Attention, la suppression est définitive et ne peut pas être annulée</span>.<br /><br />Voulez-vous vraiment supprimer la tâche "<strong><span id="modalTaskName"></span></strong>" ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <a id="btnConfirm" href="" class="btn btn-primary">Supprimer</a>
+            </div>
+        </div>
+    </div>
+</div>
