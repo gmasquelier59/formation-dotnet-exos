@@ -1,4 +1,7 @@
-﻿@model List<TaskModel>
+﻿@using TS = ASPDotnetCoreMVC_Exercice06_TodoList.Models.TaskStatus;
+@using ASPDotnetCoreMVC_Exercice06_TodoList.Controllers;
+
+@model List<TaskModel>
 @{
     List<TaskModel> tasks = Model;
 
@@ -10,7 +13,7 @@
 <div class="container mb-4">
     <div class="row">
         <div class="col-12 text-end">
-            <a asp-action="CreateForm" class="btn btn-primary mb-3 mt-3"><i class="bi bi-plus-circle"></i> Ajouter une nouvelle tâche</a>
+            <a asp-action="@nameof(TasksController.CreateForm)" class="btn btn-primary mb-3 mt-3"><i class="bi bi-plus-circle"></i> Ajouter une nouvelle tâche</a>
         </div>
     </div>
 </div>
@@ -39,12 +42,12 @@ else
                 string rowColor = "", icon = "", label = "";
                 switch (task.Status)
                 {
-                    case ASPDotnetCoreMVC_Exercice06_TodoList.Models.TaskStatus.Opened:
+                    case TS.Opened:
                         rowColor = "table-warning";
                         icon = "text-warning bi-hourglass-split";
                         label = "En cours";
                         break;
-                    case ASPDotnetCoreMVC_Exercice06_TodoList.Models.TaskStatus.Closed:
+                    case TS.Closed:
                         rowColor = "table-success";
                         icon = "text-success bi-check-circle-fill";
                         label = "Terminée";
@@ -52,20 +55,20 @@ else
                 }
                 <tr class="@rowColor">
                     <th scope="row" class="align-middle">@task.Id</th>
-                    <td class="align-middle text-center" title="@label"><i class="bi @icon"></i></td>
+                    <td class="align-middle text-center" data-toggle="tooltip" title="@label"><i class="bi @icon"></i></td>
                     <td class="align-middle">@task.Title</td>
                     <td class="align-middle">@task.Description</td>
                     <td class="align-middle">
-                        @if (task.Status == ASPDotnetCoreMVC_Exercice06_TodoList.Models.TaskStatus.Opened)
+                        @if (task.Status == TS.Opened)
                         {
-                            <a asp-action="ChangeStatus" asp-route-id="@task.Id" asp-route-status="@ASPDotnetCoreMVC_Exercice06_TodoList.Models.TaskStatus.Closed" class="btn btn-info" title="Marquer comme [terminée]"><i class="bi bi-check-circle-fill"></i></a>
+                            <a asp-action="@nameof(TasksController.ChangeStatus)" asp-route-id="@task.Id" asp-route-status="@TS.Closed" class="btn btn-info" data-toggle="tooltip"  title="Marquer comme [terminée]"><i class="bi bi-check-circle-fill"></i></a>
                         }
                         else
                         {
-                            <a asp-action="ChangeStatus" asp-route-id="@task.Id" asp-route-status="@ASPDotnetCoreMVC_Exercice06_TodoList.Models.TaskStatus.Opened" class="btn btn-info" title="Marquer comme [en cours]"><i class="bi bi-hourglass-split"></i></a>
+                            <a asp-action="@nameof(TasksController.ChangeStatus)" asp-route-id="@task.Id" asp-route-status="@TS.Opened" class="btn btn-info" data-toggle="tooltip" title="Marquer comme [en cours]"><i class="bi bi-hourglass-split"></i></a>
                         }
-                        <a asp-action="CreateForm" asp-route-id="@task.Id" class="btn btn-warning" title="Modifier"><i class="bi bi-pencil-fill"></i></a>
-                        <a asp-action="Delete" asp-route-id="@task.Id" class="btn btn-danger" title="Supprimer" onclick="document.getElementById('btnConfirm').href=this.href; document.getElementById('modalTaskName').innerText = '@task.Title'" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-trash-fill"></i></a>
+                        <a asp-action="@nameof(TasksController.CreateForm)" asp-route-id="@task.Id" class="btn btn-warning" data-toggle="tooltip" title="Modifier"><i class="bi bi-pencil-fill"></i></a>
+                        <a asp-action="@nameof(TasksController.Delete)" asp-route-id="@task.Id" class="btn btn-danger" data-toggle="tooltip" title="Supprimer" onclick="document.getElementById('btnConfirm').href=this.href; document.getElementById('modalTaskName').innerText = '@task.Title'" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-trash-fill"></i></a>
                     </td>
                 </tr>
             }
