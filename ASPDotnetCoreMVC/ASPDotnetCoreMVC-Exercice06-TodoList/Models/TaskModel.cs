@@ -16,16 +16,13 @@ namespace ASPDotnetCoreMVC_Exercice06_TodoList.Models
         [Display(Name = "Identifiant")]
         public int Id { get; set; }
 
-        [Display(Name = "Titre")]
-        [Required]
+        [Required, Display(Name = "Titre"), MaxLength(100)]
         public string Title { get; set; }
 
-        [Display(Name = "Description")]
-        [Required]
+        [Required, Display(Name = "Description"), MaxLength(255)]
         public string Description { get; set; }
 
-        [Display(Name = "Statut")]
-        [Required]
+        [Required, Display(Name = "Statut")]
         public TaskStatus Status { get; set; }
     }
 }
