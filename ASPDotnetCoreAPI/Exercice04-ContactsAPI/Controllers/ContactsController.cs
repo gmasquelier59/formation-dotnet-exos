@@ -15,6 +15,9 @@ namespace Exercice04_ContactsAPI.Controllers
             _repository = repository;
         }
 
+        /// <summary>
+        /// Permet de créer un nouveau contact
+        /// </summary>
         [HttpPost]
         public IActionResult Create(ContactModel contact)
         {
@@ -23,6 +26,9 @@ namespace Exercice04_ContactsAPI.Controllers
             return CreatedAtAction(nameof(GetById), new { id = 1 }, contact);
         }
 
+        /// <summary>
+        /// Permet d'obtenir tous les contacts
+        /// </summary>
         [HttpGet]
         public IActionResult GetAll([FromQuery] string? name = "")
         {
@@ -32,6 +38,9 @@ namespace Exercice04_ContactsAPI.Controllers
             return Ok(_repository.GetAll(c => c.Lastname.ToLower().StartsWith(name.ToLower())));
         }
 
+        /// <summary>
+        /// Permet d'obtenir un contact par son id
+        /// </summary>
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -43,6 +52,9 @@ namespace Exercice04_ContactsAPI.Controllers
             return Ok(contact);
         }
 
+        /// <summary>
+        /// Permet d'obtenir un contact à partir de son nom
+        /// </summary>
         [HttpGet("name/{name}")]
         public IActionResult GetOneByName(string name)
         {
@@ -54,6 +66,9 @@ namespace Exercice04_ContactsAPI.Controllers
             return Ok(contact);
         }
 
+        /// <summary>
+        /// Permet de mettre à jour un contact
+        /// </summary>
         [HttpPut("{id}")]
         public IActionResult Update(int id, [FromBody] ContactModel contact)
         {
@@ -63,6 +78,9 @@ namespace Exercice04_ContactsAPI.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Permet de supprimer un contact
+        /// </summary>
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
