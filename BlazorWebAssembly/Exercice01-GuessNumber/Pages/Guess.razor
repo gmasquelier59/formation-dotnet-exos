@@ -1,0 +1,81 @@
+﻿@page "/guess"
+@inject NavigationManager _navigationManager
+
+<PageTitle>Devinez le nombre magique</PageTitle>
+
+<h3 class="mb-4">Devinez le nombre magique...</h3>
+
+@if (_nombreTrouve)
+{
+    <div class="alert alert-success">
+        <span class="oi oi-circle-check text-success" aria-hidden="true"></span>
+        <span class="text-success">Bravo ! Le nombre à trouver était bien @_nombreADeviner</span>
+    </div>
+    <a href="" class="btn btn-secondary" @onclick="@Refresh" @onclick:preventDefault>Rejouer</a>
+}
+else
+{
+    @if (_nbEssais > 0)
+    {
+        <strong>Devinez le nombre compris entre 1 et 20 :</strong>
+
+        <p>
+            <input type="number" @bind="_nombreSaisi" /> <button class="btn btn-primary" @onclick="VerifierSaisie">Tester</button>
+            @if (@_messageAide != "")
+            {
+                <div class="alert alert-info mt-4">
+                    @_messageAide
+                </div>
+            }
+        </p>
+
+        <span>Vie(s) restante(s) : </span>
+        @for (int i = 0; i < _nbEssais; i++)
+        {
+            <span class="oi oi-heart text-danger" aria-hidden="true"></span>
+        }
+    }
+    else
+    {
+        <div class="alert alert-danger">
+            <span class="oi oi-circle-x text-danger" aria-hidden="true"></span> <span class="text-danger">Perdu ! Le nombre à trouver était @_nombreADeviner</span>
+        </div>
+        <a href="" class="btn btn-secondary" @onclick="@Refresh" @onclick:preventDefault>Rejouer</a>
+    }
+}
+
+@code {
+
+    void Refresh()
+    {
+        _navigationManager.NavigateTo("/guess", true);
+    }
+}
+
+@code {
+    int _nombreADeviner;
+    int _nombreSaisi;
+    int _nbEssais = 5;
+    bool _nombreTrouve = false;
+    string _messageAide = "";
+
+    public Guess()
+    {
+        Random random = new Random();
+        _nombreADeviner = random.Next(1, 21);
+    }
+
+    public void VerifierSaisie()
+    {
+        if (_nombreSaisi != _nombreADeviner)
+        {
+            if (_nombreSaisi < _nombreADeviner)
+                _messageAide = "Le nombre est plus grand";
+            else
+                _messageAide = "Le nombre est plus petit";
+            _nbEssais--;
+        }
+        else
+            _nombreTrouve = true;
+    }
+}
