@@ -14,7 +14,7 @@ namespace Exercice04_ContactsAPI.Repositories
             _dbContext = dbContext;
         }
 
-        public ContactModel Add(ContactModel contact)
+        public Contact Add(Contact contact)
         {
             _dbContext.Contacts.Add(contact);
             _dbContext.SaveChanges();
@@ -22,29 +22,29 @@ namespace Exercice04_ContactsAPI.Repositories
             return contact;
         }
 
-        public List<ContactModel> GetAll()
+        public List<Contact> GetAll()
         {
-            return _dbContext.Contacts.ToList<ContactModel>();
+            return _dbContext.Contacts.ToList<Contact>();
         }
 
-        public List<ContactModel> GetAll(Expression<Func<ContactModel, bool>> predicate)
+        public List<Contact> GetAll(Expression<Func<Contact, bool>> predicate)
         {
             return _dbContext.Contacts.Where(predicate).ToList();
         }
 
-        public ContactModel? GetById(int id)
+        public Contact? GetById(int id)
         {
-            return _dbContext.Contacts.FirstOrDefault<ContactModel>(c => c.Id == id);
+            return _dbContext.Contacts.FirstOrDefault<Contact>(c => c.Id == id);
         }
 
-        public ContactModel? GetOneByName(string name)
+        public Contact? GetOneByName(string name)
         {
-            return _dbContext.Contacts.FirstOrDefault<ContactModel>(c => c.Lastname.ToLower() == name.ToLower());
+            return _dbContext.Contacts.FirstOrDefault<Contact>(c => c.Lastname.ToLower() == name.ToLower());
         }
 
-        public bool Update(int id, ContactModel contact)
+        public bool Update(int id, Contact contact)
         {
-            ContactModel? contactFromDb = GetById(id);
+            Contact? contactFromDb = GetById(id);
 
             if (contactFromDb == null)
                 return false;
@@ -69,7 +69,7 @@ namespace Exercice04_ContactsAPI.Repositories
 
         public bool Delete(int id)
         {
-            ContactModel? contact = GetById(id);
+            Contact? contact = GetById(id);
             
             if (contact == null)
                 return false;

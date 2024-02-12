@@ -1,6 +1,6 @@
 ﻿namespace Exercice04_ContactsAPI.Models
 {
-    public enum ContactGenders
+    public enum ContactGenderEnum
     {
         Unspecified = 0,
         Male = 1,

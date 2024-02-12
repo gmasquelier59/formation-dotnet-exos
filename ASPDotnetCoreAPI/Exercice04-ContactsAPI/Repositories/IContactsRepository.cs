@@ -5,17 +5,17 @@ namespace Exercice04_ContactsAPI.Repositories
 {
     public interface IContactsRepository
     {
-        ContactModel Add(ContactModel contact);
+        Contact Add(Contact contact);
 
-        public ContactModel? GetById(int id);
+        public Contact? GetById(int id);
 
-        List<ContactModel> GetAll();
+        List<Contact> GetAll();
 
-        List<ContactModel> GetAll(Expression<Func<ContactModel, bool>> predicate);
+        List<Contact> GetAll(Expression<Func<Contact, bool>> predicate);
 
-        public ContactModel GetOneByName(string name);
+        public Contact GetOneByName(string name);
 
-        bool Update(int id, ContactModel contact);
+        bool Update(int id, Contact contact);
 
         bool Delete(int id);
     }

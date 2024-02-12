@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercice04-ContactsAPI", "ASPDotnetCoreAPI\Exercice04-ContactsAPI.csproj", "{F27AEE51-FF3B-4FA2-9702-862D7D37BD2A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercice01-GuessNumber", "BlazorWebAssembly\Exercice01-GuessNumber\Exercice01-GuessNumber.csproj", "{C0227662-7A08-4665-97E8-557496E79468}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F27AEE51-FF3B-4FA2-9702-862D7D37BD2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F27AEE51-FF3B-4FA2-9702-862D7D37BD2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F27AEE51-FF3B-4FA2-9702-862D7D37BD2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F27AEE51-FF3B-4FA2-9702-862D7D37BD2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0227662-7A08-4665-97E8-557496E79468}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0227662-7A08-4665-97E8-557496E79468}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0227662-7A08-4665-97E8-557496E79468}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0227662-7A08-4665-97E8-557496E79468}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {B08AD1D8-5725-4885-AB88-B9D893992CC6}
+		SolutionGuid = {966C38E1-0F69-45C7-91EE-3EAE1D19883B}
 	EndGlobalSection
 EndGlobal

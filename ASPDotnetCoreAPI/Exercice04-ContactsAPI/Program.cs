@@ -1,6 +1,7 @@
 using Exercice04_ContactsAPI.Data;
 using Exercice04_ContactsAPI.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +24,25 @@ builder.Services.AddSwaggerGen(c =>
 {
     var filePath = Path.Combine(System.AppContext.BaseDirectory, "Exercice04-ContactsAPI.xml");
     c.IncludeXmlComments(filePath);
+
+    c.SwaggerDoc("v1",
+        new OpenApiInfo
+        {
+            Title = "ASP.Net Core API - Exercice 4",
+            Version = "v1",
+            Description = "Gestion simple de contacts",
+            Contact = new OpenApiContact
+            {
+                Name = "Guillausaure",
+                Email = "guillausaure@jurassic-park.com"
+            },
+            License = new OpenApiLicense
+            {
+                Name = "Apache 2.0",
+                Url = new Uri("http://www.apache.org/licenses/LICENSE-2.0.html")
+            }
+        }
+    );
 });
 
 var app = builder.Build();
