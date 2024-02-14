@@ -1,0 +1,79 @@
+﻿@page "/fiche"
+@inherits FicheBase
+@using Exercice02_FormulairePersonne.Models
+
+<h3>Formulaire</h3>
+
+<p>Les champs marqués <span class="text-danger">*</span> sont obligatoires</p>
+
+<div class="row">
+    <div class="col">
+        <EditForm Model="Person" OnValidSubmit="() => ShowCard = true" OnInvalidSubmit="() => ShowCard = false">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <div class="row">
+                <div class="col">
+                    <div class="mb-4">
+                        <label for="firstname" class="form-label">Nom <span class="text-danger">*</span> :</label>
+                        <InputText class="form-control" id="firstname" @bind-Value="Person.LastName" />
+                    </div>
+                    <div class="mb-4">
+                        <label for="address" class="form-label">Adresse :</label>
+                        <InputText class="form-control" id="address" @bind-Value="Person.Address" />
+                    </div>
+                    <div class="mb-4">
+                        <label for="age" class="form-label">Age :</label>
+                        <input type="text" readonly class="form-control" id="age" value="@Person.Age ans" />
+                    </div>
+                    <div class="mb-4 form-check">
+                        <label for="isMarried" class="form-check-label">Est marié(e)</label>
+                        <InputCheckbox class="form-check-input" id="isMarried" @bind-Value="@Person.IsMarried" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-4">
+                        <label for="lastname" class="form-label">Prénom <span class="text-danger">*</span>:</label>
+                        <InputText class="form-control" id="lastname" @bind-Value="Person.FirstName" />
+                    </div>
+                    <div class="mb-4">
+                        <label for="zip" class="form-label">Code postal :</label>
+                        <InputText class="form-control" id="zip" @bind-Value="Person.Zip" />
+                    </div>
+                    <div class="mb-4">
+                        <label for="birthday" class="form-label">Date de naissance <span class="text-danger">*</span>:</label>
+                        <InputDate class="form-control" id="birthday" @bind-Value="Person.Birthday" />
+                    </div>
+                    <div class="mb-4">
+                        <label for="favoriteColor" class="form-label">Couleur préférée <span class="text-danger">*</span>:</label>
+                        <InputSelect class="form-select" id="favoriteColor" @bind-Value="Person.FavoriteColor">
+                            @foreach (Colors favoriteColor in Enum.GetValues(typeof(Colors)))
+                            {
+                                <option value="@favoriteColor">@(favoriteColor)</option>
+                            }
+                        </InputSelect>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Envoyer</button>
+            </div>
+        </EditForm>
+    </div>
+    <div class="col">
+        @if (ShowCard)
+        {
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@Person.LastName @Person.FirstName</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">@Person.Age ans (@Person.Birthday.ToString("dd/MM/yyyy"))</h6>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">@((Person.IsMarried) ? "Marié(e)" : "Célibataire")</h6>
+                    <p class="card-text">@Person.Address @Person.Zip</p>
+                    <p>Couleur favorite :</p>
+                    <p class="card-text" style="background-color: @Person.FavoriteColor">&nbsp;</p>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+
+}

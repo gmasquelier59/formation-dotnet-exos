@@ -19,7 +19,7 @@ namespace Exercice04_ContactsAPI.Controllers
         /// Permet de créer un nouveau contact
         /// </summary>
         [HttpPost]
-        public IActionResult Create(ContactModel contact)
+        public IActionResult Create(Contact contact)
         {
             contact = _repository.Add(contact);
 
@@ -44,7 +44,7 @@ namespace Exercice04_ContactsAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            ContactModel? contact = _repository.GetById(id);
+            Contact? contact = _repository.GetById(id);
 
             if (contact == null)
                 return NotFound();
@@ -58,7 +58,7 @@ namespace Exercice04_ContactsAPI.Controllers
         [HttpGet("name/{name}")]
         public IActionResult GetOneByName(string name)
         {
-            ContactModel contact = _repository.GetOneByName(name);
+            Contact contact = _repository.GetOneByName(name);
 
             if (contact == null)
                 return NotFound();
@@ -70,7 +70,7 @@ namespace Exercice04_ContactsAPI.Controllers
         /// Permet de mettre à jour un contact
         /// </summary>
         [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody] ContactModel contact)
+        public IActionResult Update(int id, [FromBody] Contact contact)
         {
             if (!_repository.Update(id, contact))
                 return BadRequest();

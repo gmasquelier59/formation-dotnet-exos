@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercice05-PizzeriaAPI", "ASPDotnetCoreAPI\Exercice05-PizzeriaAPI\Exercice05-PizzeriaAPI.csproj", "{5BCAFACE-E0F5-4437-882E-FF6083658473}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{F27AEE51-FF3B-4FA2-9702-862D7D37BD2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F27AEE51-FF3B-4FA2-9702-862D7D37BD2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F27AEE51-FF3B-4FA2-9702-862D7D37BD2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BCAFACE-E0F5-4437-882E-FF6083658473}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BCAFACE-E0F5-4437-882E-FF6083658473}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BCAFACE-E0F5-4437-882E-FF6083658473}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BCAFACE-E0F5-4437-882E-FF6083658473}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
