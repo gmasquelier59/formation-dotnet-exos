@@ -11,7 +11,7 @@
         <span style="font-size: 4em; margin-right: 10px"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path fill="currentColor" fill-opacity="0" stroke-dasharray="48" stroke-dashoffset="48" d="M17 9v9a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V9z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="48;0" /><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.15s" values="0;0.3" /></path><path stroke-dasharray="14" stroke-dashoffset="14" d="M17 14H20C20.55 14 21 13.55 21 13V10C21 9.45 20.55 9 20 9H17"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="14;28" /></path></g><mask id="lineMdCoffeeTwotoneLoop0"><path fill="none" stroke="#fff" stroke-width="2" d="M8 0c0 2-2 2-2 4s2 2 2 4-2 2-2 4 2 2 2 4M12 0c0 2-2 2-2 4s2 2 2 4-2 2-2 4 2 2 2 4M16 0c0 2-2 2-2 4s2 2 2 4-2 2-2 4 2 2 2 4"><animateMotion calcMode="linear" dur="3s" path="M0 0v-8" repeatCount="indefinite" /></path></mask><rect width="24" height="0" y="7" fill="currentColor" mask="url(#lineMdCoffeeTwotoneLoop0)"><animate fill="freeze" attributeName="y" begin="0.8s" dur="0.6s" values="7;2" /><animate fill="freeze" attributeName="height" begin="0.8s" dur="0.6s" values="0;5" /></rect></svg></span>
         <span class="text-success">Bravo ! Le nombre à trouver était bien @_nombreADeviner</span>
     </div>
-    <a href="" class="btn btn-secondary" @onclick="@Refresh" @onclick:preventDefault>Rejouer</a>
+    <a href="" class="btn btn-secondary" @onclick="@Init" @onclick:preventDefault>Rejouer</a>
 }
 else
 {
@@ -19,25 +19,27 @@ else
     {
         <form>
             <div class="mb-3 col-6">
-                <label for="exampleInputEmail1" class="form-label">Devinez le nombre compris entre 1 et 20 :</label>
-                <input type="number" @bind="_nombreSaisi" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <label for="exampleInputEmail1" class="form-label">Devinez le nombre compris entre @borneMini et @borneMaxi :</label>
+                <input type="number" @bind="_nombreSaisi" min="@borneMini" max="@borneMaxi" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                 @if (@_messageAide != "")
                 {
-                    <div id="emailHelp" class="form-text text-info">@_messageAide</div>
+                    <div class="alert alert-warning mt-4" role="alert">Tip : @_messageAide</div>
                 }
                 
             </div>
             <button type="submit" class="btn btn-primary" @onclick="VerifierSaisie" @onclick:preventDefault>Tester</button>
         </form>
 
-        <span>Vie(s) restante(s) : </span>
-        @for (int i = 0; i < _nbEssais; i++)
-        {
-            @* <span class="oi oi-heart text-danger" style="font-size: 2em;" aria-hidden="true"></span> *@
-            <span class="text-danger" style="font-size: 4em;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" fill-opacity="0" stroke="currentColor" stroke-dasharray="32" stroke-dashoffset="32" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3L9.65 8.76L3.44 9.22L8.2 13.24L6.71 19.28L12 16M12 3L14.35 8.76L20.56 9.22L15.8 13.24L17.29 19.28L12 16"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="32;0" /><animate fill="freeze" attributeName="fill-opacity" begin="0.5s" dur="0.5s" values="0;1" /><animate attributeName="d" dur="1.5s" repeatCount="indefinite" values="M12 3L9.65 8.76L3.44 9.22L8.2 13.24L6.71 19.28L12 16M12 3L14.35 8.76L20.56 9.22L15.8 13.24L17.29 19.28L12 16;M12 7L10.82 10.38L7.24 10.45L10.1 12.62L9.06 16.05L12 14M12 7L13.18 10.38L16.76 10.45L13.9 12.62L14.94 16.05L12 14;M12 3L9.65 8.76L3.44 9.22L8.2 13.24L6.71 19.28L12 16M12 3L14.35 8.76L20.56 9.22L15.8 13.24L17.29 19.28L12 16" /></path></svg>
-            </span>
-        }
+        <div class="d-flex align-items-center">
+            <span><strong>@_nbEssais</strong> essai(s) restant(s)  : </span>
+            @for (int i = 0; i < _nbEssais; i++)
+            {
+                @* <span class="oi oi-heart text-danger" style="font-size: 2em;" aria-hidden="true"></span> *@
+                <span class="text-danger" style="font-size: 4em;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" fill-opacity="0" stroke="currentColor" stroke-dasharray="32" stroke-dashoffset="32" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3L9.65 8.76L3.44 9.22L8.2 13.24L6.71 19.28L12 16M12 3L14.35 8.76L20.56 9.22L15.8 13.24L17.29 19.28L12 16"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="32;0" /><animate fill="freeze" attributeName="fill-opacity" begin="0.5s" dur="0.5s" values="0;1" /><animate attributeName="d" dur="1.5s" repeatCount="indefinite" values="M12 3L9.65 8.76L3.44 9.22L8.2 13.24L6.71 19.28L12 16M12 3L14.35 8.76L20.56 9.22L15.8 13.24L17.29 19.28L12 16;M12 7L10.82 10.38L7.24 10.45L10.1 12.62L9.06 16.05L12 14M12 7L13.18 10.38L16.76 10.45L13.9 12.62L14.94 16.05L12 14;M12 3L9.65 8.76L3.44 9.22L8.2 13.24L6.71 19.28L12 16M12 3L14.35 8.76L20.56 9.22L15.8 13.24L17.29 19.28L12 16" /></path></svg>
+                </span>
+            }
+        </div>
     }
     else
     {
@@ -46,42 +48,6 @@ else
                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><g fill="currentColor" fill-opacity="0"><path d="m15.22 6.03l2.53-1.94L14.56 4L13.5 1l-1.06 3l-3.19.09l2.53 1.94l-.91 3.06l2.63-1.81l2.63 1.81z"><animate id="lineMdMoonFilledLoop0" fill="freeze" attributeName="fill-opacity" begin="0.7s;lineMdMoonFilledLoop0.begin+6s" dur="0.4s" values="0;1" /><animate fill="freeze" attributeName="fill-opacity" begin="lineMdMoonFilledLoop0.begin+2.2s" dur="0.4s" values="1;0" /></path><path d="M13.61 5.25L15.25 4l-2.06-.05L12.5 2l-.69 1.95L9.75 4l1.64 1.25l-.59 1.98l1.7-1.17l1.7 1.17z"><animate fill="freeze" attributeName="fill-opacity" begin="lineMdMoonFilledLoop0.begin+3s" dur="0.4s" values="0;1" /><animate fill="freeze" attributeName="fill-opacity" begin="lineMdMoonFilledLoop0.begin+5.2s" dur="0.4s" values="1;0" /></path><path d="M19.61 12.25L21.25 11l-2.06-.05L18.5 9l-.69 1.95l-2.06.05l1.64 1.25l-.59 1.98l1.7-1.17l1.7 1.17z"><animate fill="freeze" attributeName="fill-opacity" begin="lineMdMoonFilledLoop0.begin+0.4s" dur="0.4s" values="0;1" /><animate fill="freeze" attributeName="fill-opacity" begin="lineMdMoonFilledLoop0.begin+2.8s" dur="0.4s" values="1;0" /></path><path d="m20.828 9.731l1.876-1.439l-2.366-.067L19.552 6l-.786 2.225l-2.366.067l1.876 1.439L17.601 12l1.951-1.342L21.503 12z"><animate fill="freeze" attributeName="fill-opacity" begin="lineMdMoonFilledLoop0.begin+3.4s" dur="0.4s" values="0;1" /><animate fill="freeze" attributeName="fill-opacity" begin="lineMdMoonFilledLoop0.begin+5.6s" dur="0.4s" values="1;0" /></path></g><g fill-opacity="0" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path fill="currentColor" stroke-dasharray="56" stroke-dashoffset="56" d="M7 6 C7 12.08 11.92 17 18 17 C18.53 17 19.05 16.96 19.56 16.89 C17.95 19.36 15.17 21 12 21 C7.03 21 3 16.97 3 12 C3 8.83 4.64 6.05 7.11 4.44 C7.04 4.95 7 5.47 7 6 Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="56;0" /><animate fill="freeze" attributeName="fill-opacity" begin="1.5s" dur="0.5s" values="0;1" /></path></g></svg>
             </span> <span class="text-danger">Perdu ! Le nombre à trouver était @_nombreADeviner</span>
         </div>
-        <a href="" class="btn btn-secondary" @onclick="@Refresh" @onclick:preventDefault>Rejouer</a>
-    }
-}
-
-@code {
-
-    void Refresh()
-    {
-        _navigationManager.NavigateTo("/guess", true);
-    }
-}
-
-@code {
-    int _nombreADeviner;
-    int _nombreSaisi;
-    int _nbEssais = 5;
-    bool _nombreTrouve = false;
-    string _messageAide = "";
-
-    public Guess()
-    {
-        Random random = new Random();
-        _nombreADeviner = random.Next(1, 21);
-    }
-
-    public void VerifierSaisie()
-    {
-        if (_nombreSaisi != _nombreADeviner)
-        {
-            if (_nombreSaisi < _nombreADeviner)
-                _messageAide = "Le nombre est plus grand";
-            else
-                _messageAide = "Le nombre est plus petit";
-            _nbEssais--;
-        }
-        else
-            _nombreTrouve = true;
+        <a href="" class="btn btn-secondary" @onclick="@Init" @onclick:preventDefault>Rejouer</a>
     }
 }
