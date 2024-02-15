@@ -1,0 +1,68 @@
+﻿@using Exercice03_PizzeriaOnLine.Models
+@using Exercice03_PizzeriaOnLine.Services
+@inject IPizzaService PizzaService
+
+<MudDialog>
+
+    <TitleContent>
+        <MudText Typo="Typo.h6">
+            @if (@pizza.Id == 0)
+            {
+                <MudIcon Icon="@Icons.Material.Filled.AddBox" Class="mr-3 mb-n1" />
+                @("Créer une nouvelle pizza")
+            }
+            else
+            {
+                <MudIcon Icon="@Icons.Material.Filled.Edit" Class="mr-3 mb-n1" />
+                @("Modifier une pizza")
+            }
+        </MudText>
+    </TitleContent>
+
+    <DialogContent>
+        <MudForm @ref="form" Model="pizza" @bind-IsValid="@success">
+            <MudTextField @bind-Value="@pizza.Name" Label="Nom" Required />
+            <MudNumericField @bind-Value="@pizza.Price" Label="Prix (entre 1 et 50 €)" style="width: 70px" Min="1" Max="50" Adornment="Adornment.End" AdornmentText="€" />
+            <MudTextField @bind-Value="@pizza.ImageLink" Label="Photo" Required />
+            <MudCheckBox @bind-Value="@pizza.IsMostOrdered" Label="Meilleure vente" />
+            <MudSelect T="int" MultiSelectionTextFunc="@(new Func<List<string>, string>(GetMultiSelectionText))" Label="Ingrédient(s)" MultiSelection="true" Required>
+                @foreach (var ingredient in PizzaService.GetAllIngredients())
+                {
+                    <MudSelectItem T="int" Value="@ingredient.Id">@ingredient.Name</MudSelectItem>
+                }
+            </MudSelect>
+        </MudForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Annuler</MudButton>
+        <MudButton Color="Color.Error" OnClick="Confirm">Confirmer</MudButton>
+    </DialogActions>
+
+</MudDialog>
+
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+    [Parameter] public Pizza pizza { get; set; } = new Pizza();
+
+    bool success;
+    MudForm form;
+
+    private void Cancel()
+    {
+        MudDialog.Cancel();
+    }
+
+    private void Confirm()
+    {
+        form.Validate();
+        if (success)
+            MudDialog.Close(DialogResult.Ok(pizza));
+    }
+
+    private string GetMultiSelectionText(List<string> selectedValues)
+    {
+        Dictionary<int, string> list = PizzaService.GetAllIngredientsIds();
+        return $"{string.Join(", ", selectedValues.Select(x => list[int.Parse(x)]))}";
+    }
+}

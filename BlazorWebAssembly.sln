@@ -5,7 +5,9 @@ VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercice01-GuessNumber", "BlazorWebAssembly\Exercice01-GuessNumber\Exercice01-GuessNumber.csproj", "{C0227662-7A08-4665-97E8-557496E79468}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercice02-FormulairePersonne", "BlazorWebAssembly\Exercice02-FormulairePersonne\Exercice02-FormulairePersonne.csproj", "{CCC5B051-A01E-4302-9043-A7D3E9B3FEA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercice02-FormulairePersonne", "BlazorWebAssembly\Exercice02-FormulairePersonne\Exercice02-FormulairePersonne.csproj", "{CCC5B051-A01E-4302-9043-A7D3E9B3FEA7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercice03-PizzeriaOnLine", "BlazorWebAssembly\Exercice03-PizzeriaOnLine\Exercice03-PizzeriaOnLine.csproj", "{4E17D007-DC5F-4A6C-BD70-D32F15D08574}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{CCC5B051-A01E-4302-9043-A7D3E9B3FEA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCC5B051-A01E-4302-9043-A7D3E9B3FEA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCC5B051-A01E-4302-9043-A7D3E9B3FEA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E17D007-DC5F-4A6C-BD70-D32F15D08574}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E17D007-DC5F-4A6C-BD70-D32F15D08574}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E17D007-DC5F-4A6C-BD70-D32F15D08574}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E17D007-DC5F-4A6C-BD70-D32F15D08574}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
