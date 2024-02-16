@@ -11,7 +11,20 @@ namespace Exercice03_PizzeriaOnLine.Services
 
         public void Add(Pizza pizza)
         {
-            InitialPizza.completePizzas.Add(pizza);
+            if (pizza.Id == 0)
+                InitialPizza.completePizzas.Add(pizza);
+            else
+            {
+                Pizza pizzaToUpdate = GetPizzaById(pizza.Id);
+
+                pizzaToUpdate.Name = pizza.Name;
+                pizzaToUpdate.Price = pizza.Price;
+                pizzaToUpdate.IsMostOrdered = pizza.IsMostOrdered;
+                pizzaToUpdate.Ingredients = pizza.Ingredients;
+                pizzaToUpdate.ImageLink = pizza.ImageLink;
+
+                pizzaToUpdate = pizza;
+            }
         }
 
         public List<Ingredient> GetAllIngredients()
@@ -25,6 +38,22 @@ namespace Exercice03_PizzeriaOnLine.Services
             foreach(Ingredient ingredient in InitialPizza.ingredients)
                 list.Add(ingredient.Id, ingredient.Name);
             return list;
+        }
+
+        public Ingredient? GetIngredientById(int id)
+        {
+            return InitialPizza.ingredients.FirstOrDefault(i => i.Id == id);
+        }
+
+        public Pizza? GetPizzaById(int id)
+        {
+            return InitialPizza.completePizzas.FirstOrDefault(i => i.Id == id);
+        }
+
+        public void DeletePizza(Pizza pizza)
+        {
+            Pizza pizzaToDelete = GetPizzaById(pizza.Id);
+            InitialPizza.completePizzas.Remove(pizzaToDelete);
         }
     }
 }

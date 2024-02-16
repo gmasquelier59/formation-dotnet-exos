@@ -67,3 +67,16 @@ a, .btn-link {
 .badge > a {
     color: inherit;
 }
+
+
+body {
+    background-color: #E1C095;
+}
+
+.mud-appbar {
+    background-color: #3B3501;
+}
+
+.mud-card {
+    background-color: #E9D6B8;
+}

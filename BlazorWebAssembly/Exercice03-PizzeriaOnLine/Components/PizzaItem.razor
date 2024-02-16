@@ -3,26 +3,21 @@
 <MudCard>
     <MudCardMedia Image="@Pizza.ImageLink" Height="200" />
     <MudCardContent>
-        <MudText Typo="Typo.h5">@Pizza.Name</MudText>
-        <MudText Typo="Typo.body2">
-            @{
-                int i = 0;
-            }
-            @foreach (Ingredient ingredient in Pizza.Ingredients)
+        <MudText Typo="Typo.h5">
+            @Pizza.Name
+        </MudText>
+        <MudText Typo="Typo.subtitle1">
+            @if (Pizza.IsMostOrdered)
             {
-                @ingredient.Name
-                if (i < Pizza.Ingredients.Count - 1)
-                    @(", ")
-                ;
-                i++;
+                <MudIcon Icon="@Icons.Material.Filled.Star" Color="Color.Error" Title="Meilleure vente" Size="Size.Small" />
+                <small><strong>Meilleure vente !</strong></small>
             }
         </MudText>
+        <MudText Typo="Typo.body2">
+            @string.Join(", ", Pizza.Ingredients)
+        </MudText>
     </MudCardContent>
-    <MudCardActions class="d-flex justify-space-between flex-grow-1 gap-4">
-        @if (Pizza.IsMostOrdered)
-        {
-            <MudText Color="Color.Secondary"><MudIcon Icon="@Icons.Material.Filled.Star" class="mr-1" /><small>Meilleure vente !</small></MudText>
-        }
+    <MudCardActions class="d-flex justify-end flex-grow-1 gap-4">
         <MudButton Variant="Variant.Text" Color="Color.Primary" OnClick="TriggerOnAddToBasketEvent">
             <MudIcon Icon="@Icons.Material.Filled.LocalPizza" Color="Color.Primary" class="mr-2" />
             Commander
@@ -33,11 +28,11 @@
     {
         <MudCardActions class="d-flex justify-space-between flex-grow-1 gap-4">
             <MudDivider DividerType="DividerType.Middle" />
-            <MudButton Variant="Variant.Text" Color="Color.Warning" OnClick="TriggerOnAddToBasketEvent">
+            <MudButton Variant="Variant.Text" Color="Color.Warning" OnClick="TriggerOnEditCallbackEvent">
                 <MudIcon Icon="@Icons.Material.Filled.Edit" Color="Color.Warning" class="mr-2" />
                 Modifier
             </MudButton>
-            <MudButton Variant="Variant.Text" Color="Color.Error" OnClick="TriggerOnAddToBasketEvent">
+            <MudButton Variant="Variant.Text" Color="Color.Error" OnClick="TriggerOnDeleteEvent">
                 <MudIcon Icon="@Icons.Material.Filled.Delete" Color="Color.Error" class="mr-2" />
                 Supprimer
             </MudButton>
@@ -56,8 +51,24 @@
     [Parameter]
     public EventCallback<Pizza> OnAddToBasketCallback { get; set; }
 
+    [Parameter]
+    public EventCallback<Pizza> OnEditCallback { get; set; }
+
+    [Parameter]
+    public EventCallback<Pizza> OnDeleteCallback { get; set; }
+
     private async Task TriggerOnAddToBasketEvent()
     {
         await OnAddToBasketCallback.InvokeAsync(Pizza);
+    }
+
+    private async Task TriggerOnEditCallbackEvent()
+    {
+        await OnEditCallback.InvokeAsync(Pizza);
+    }
+
+    private async Task TriggerOnDeleteEvent()
+    {
+        await OnDeleteCallback.InvokeAsync(Pizza);
     }
 }

@@ -25,7 +25,7 @@
             <MudNumericField @bind-Value="@pizza.Price" Label="Prix (entre 1 et 50 €)" style="width: 70px" Min="1" Max="50" Adornment="Adornment.End" AdornmentText="€" />
             <MudTextField @bind-Value="@pizza.ImageLink" Label="Photo" Required />
             <MudCheckBox @bind-Value="@pizza.IsMostOrdered" Label="Meilleure vente" />
-            <MudSelect T="int" MultiSelectionTextFunc="@(new Func<List<string>, string>(GetMultiSelectionText))" Label="Ingrédient(s)" MultiSelection="true" Required>
+            <MudSelect T="int" @bind-SelectedValues="IngredientsIds" MultiSelectionTextFunc="@(new Func<List<string>, string>(GetMultiSelectionText))" Label="Ingrédient(s)" MultiSelection="true" Required>
                 @foreach (var ingredient in PizzaService.GetAllIngredients())
                 {
                     <MudSelectItem T="int" Value="@ingredient.Id">@ingredient.Name</MudSelectItem>
@@ -43,10 +43,18 @@
 @code {
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
 
-    [Parameter] public Pizza pizza { get; set; } = new Pizza();
+    [Parameter] public Pizza pizza { get; set; }
+
+    public IEnumerable<int> IngredientsIds = new HashSet<int>();
 
     bool success;
     MudForm form;
+
+    protected override void OnInitialized()
+    {
+        foreach (Ingredient ingredient in pizza.Ingredients)
+            ((HashSet<int>)IngredientsIds).Add(ingredient.Id);
+    }
 
     private void Cancel()
     {
@@ -57,7 +65,13 @@
     {
         form.Validate();
         if (success)
+        {
+            pizza.Ingredients.Clear();
+            foreach (int id in IngredientsIds)
+                pizza.Ingredients.Add(PizzaService.GetIngredientById(id)!);
+
             MudDialog.Close(DialogResult.Ok(pizza));
+        }
     }
 
     private string GetMultiSelectionText(List<string> selectedValues)
