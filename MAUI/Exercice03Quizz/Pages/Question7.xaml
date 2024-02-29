@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Exercice03Quizz.Pages.Question7"
+             Title="Question n°7">
+    <VerticalStackLayout Spacing="30" Margin="50">
+        <Label 
+            Text="Dans quelle attraction de Disneyland Paris, vous embarquez sur un bateau ?"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            FontSize="20" />
+        <Grid RowDefinitions="*,*" ColumnDefinitions="*,*" ColumnSpacing="10" RowSpacing="10">
+            <Button Text="Crush's Coaster" x:Name="Answer1" Grid.Column="0" Grid.Row="0" Clicked="AnswerClicked" />
+            <Button Text="Ratatouille" x:Name="Answer2" Grid.Column="1" Grid.Row="0" Clicked="AnswerClicked" />
+            <Button Text="Peter Pan's Flight" x:Name="Answer3" Grid.Column="0" Grid.Row="1" Clicked="AnswerClicked" />
+            <Button Text="Les Voyages de Pinocchio" x:Name="Answer4" Grid.Column="1" Grid.Row="1" Clicked="AnswerClicked" />
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

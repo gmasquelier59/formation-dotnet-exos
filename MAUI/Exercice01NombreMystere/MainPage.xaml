@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Exercice01NombreMystere.MainPage">
+
+    <FlexLayout>
+        <VerticalStackLayout Margin="30" Spacing="20">
+
+            <Label
+                Text="A vous de jouer !"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1" />
+
+            <Border x:Name="Container" Stroke="#004D40"
+                StrokeThickness="5"
+                StrokeShape="RoundRectangle 40,0,0,40"
+                Background="#00897B"
+                Padding="16,8"
+                HorizontalOptions="Center">
+
+                <VerticalStackLayout
+                    Padding="30,0"
+                    Spacing="25">
+
+                    <Label
+                        Text="A quel nombre pensez-vous ?"
+                        Style="{StaticResource SubHeadline}" />
+
+                    <Label
+                        x:Name="DisplayNumberOfTries"
+                        Text="(nombre compris entre 1 et 20 inclus)"
+                        Style="{StaticResource HelpText}" />
+
+                    <Entry
+                        x:Name="NumberToTest"
+                        Keyboard="Numeric"
+                        Completed="OnTestBtnClicked" />
+
+                    <Button
+                        x:Name="TestBtn"
+                        Text="Tester" 
+                        Clicked="OnTestBtnClicked"
+                        HorizontalOptions="Fill" />
+
+                </VerticalStackLayout>
+            </Border>
+
+            <Label
+                x:Name="TestResult"
+                Text=""
+                Style="{StaticResource HelpText}" />
+
+            <Button
+                    x:Name="ResetBtn"
+                    IsVisible="false"
+                    Text="Rejouer" 
+                    Clicked="OnResetBtnClicked"
+                    HorizontalOptions="Fill" />
+
+        </VerticalStackLayout>
+        <VerticalStackLayout Margin="30" WidthRequest="50">
+            <Label Text="Vos vies"></Label>
+            <Image x:Name="ImgLife1" Source="heart.png" />
+            <Image x:Name="ImgLife2" Source="heart.png" />
+            <Image x:Name="ImgLife3" Source="heart.png" />
+            <Image x:Name="ImgLife4" Source="heart.png" />
+            <Image x:Name="ImgLife5" Source="heart.png" />
+        </VerticalStackLayout>
+    </FlexLayout>
+</ContentPage>

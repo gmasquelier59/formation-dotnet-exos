@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Exercice03Quizz.Pages.Question4"
+             Title="Question n°4">
+    <VerticalStackLayout Spacing="30" Margin="50">
+        <Label 
+            Text="Quelle est la couleur principale du Château du parc Disneyland ?"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            FontSize="20" />
+        <Grid RowDefinitions="*,*" ColumnDefinitions="*,*" ColumnSpacing="10" RowSpacing="10">
+            <Button Text="Jaune" x:Name="Answer1" Grid.Column="0" Grid.Row="0" Clicked="AnswerClicked" />
+            <Button Text="Bleu" x:Name="Answer2" Grid.Column="1" Grid.Row="0" Clicked="AnswerClicked" />
+            <Button Text="Rose" x:Name="Answer3" Grid.Column="0" Grid.Row="1" Clicked="AnswerClicked" />
+            <Button Text="Blanc" x:Name="Answer4" Grid.Column="1" Grid.Row="1" Clicked="AnswerClicked" />
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

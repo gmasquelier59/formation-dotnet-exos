@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Exercice03Quizz.Pages.Question2"
+             Title="Question n°2">
+    <VerticalStackLayout Spacing="30" Margin="50">
+        <Label 
+            Text="Laquelle de ces attractions est la plus ancienne dans le parc Disneyland ?"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            FontSize="20" />
+        <Grid RowDefinitions="*,*" ColumnDefinitions="*,*" ColumnSpacing="10" RowSpacing="10">
+            <Button Text="Indiana Jones et le Temple du Péril" x:Name="Answer1" Grid.Column="0" Grid.Row="0" Clicked="AnswerClicked" />
+            <Button Text="Space Mountain" x:Name="Answer2" Grid.Column="1" Grid.Row="0" Clicked="AnswerClicked" />
+            <Button Text="Buzz Lightyear Laser Blast" x:Name="Answer3" Grid.Column="0" Grid.Row="1" Clicked="AnswerClicked" />
+            <Button Text="Chérie, j'ai rétrécie le public !" x:Name="Answer4" Grid.Column="1" Grid.Row="1" Clicked="AnswerClicked" />
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Exercice03Quizz.Pages.Question6"
+             Title="Question n°6">
+    <VerticalStackLayout Spacing="30" Margin="50">
+        <Label 
+            Text="Quel est le nom officiel anglais de l’attraction “Le train de la mine” à Disneyland Paris ?"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            FontSize="20" />
+        <Grid RowDefinitions="*,*" ColumnDefinitions="*,*" ColumnSpacing="10" RowSpacing="10">
+            <Button Text="Cursed Red Hill" x:Name="Answer1" Grid.Column="0" Grid.Row="0" Clicked="AnswerClicked" />
+            <Button Text="Big Thunder Mountain" x:Name="Answer2" Grid.Column="1" Grid.Row="0" Clicked="AnswerClicked" />
+            <Button Text="Far West Wagons" x:Name="Answer3" Grid.Column="0" Grid.Row="1" Clicked="AnswerClicked" />
+            <Button Text="Crazy Mountain Train" x:Name="Answer4" Grid.Column="1" Grid.Row="1" Clicked="AnswerClicked" />
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

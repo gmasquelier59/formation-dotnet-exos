@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Exercice03Quizz.Pages.Question1"
+             Title="Question n°1">
+    <VerticalStackLayout Spacing="30" Margin="50">
+        <Label 
+            Text="En quelle année a été inauguré le parc d’attractions Disneyland Paris ?"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            FontSize="20" />
+        <Grid RowDefinitions="*,*" ColumnDefinitions="*,*" ColumnSpacing="10" RowSpacing="10">
+            <Button Text="1990" x:Name="Answer1" Grid.Column="0" Grid.Row="0" Clicked="AnswerClicked" />
+            <Button Text="1992" x:Name="Answer2" Grid.Column="1" Grid.Row="0" Clicked="AnswerClicked" />
+            <Button Text="1994" x:Name="Answer3" Grid.Column="0" Grid.Row="1" Clicked="AnswerClicked" />
+            <Button Text="1996" x:Name="Answer4" Grid.Column="1" Grid.Row="1" Clicked="AnswerClicked" />
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>
