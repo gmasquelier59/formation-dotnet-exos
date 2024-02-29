@@ -1,0 +1,168 @@
+﻿@page "/"
+@using Exercice03_PizzeriaOnLine.Components
+@using Exercice03_PizzeriaOnLine.Components.Dialogs
+@using Exercice03_PizzeriaOnLine.Models
+@using Exercice03_PizzeriaOnLine.Services
+@inject IPizzaService PizzaService
+@inject IOrderService OrderService
+@inject IDialogService DialogService
+
+<PageTitle>Papà Raffaele</PageTitle>
+
+<a name="pizzasList"></a>
+<CascadingValue Value="@AdminMode">
+    <MudGrid>
+        <MudItem xs="12" sm="6" md="8" lg="8">
+            @if (AdminMode)
+            {
+                <MudButton Variant="Variant.Text" Color="Color.Primary" OnClick="() => AddEditPizza()" Class="mb-4">
+                    <MudIcon Icon="@Icons.Material.Filled.AddBox" Color="Color.Primary" class="mr-2" />
+                    Créer une nouvelle pizza
+                </MudButton>
+            }
+            <MudGrid>
+                @foreach (Pizza pizza in pizzas)
+                {
+                    <MudItem xs="12" sm="12" md="6" lg="4">
+                        <PizzaItem Pizza="pizza" OnDeleteCallback="@(async (value) => { await Task.Yield(); DeletePizza(value); })" OnEditCallback="@(async (value) => { await Task.Yield(); AddEditPizza(value); })" OnAddToBasketCallback="@(async (value) => { await Task.Yield(); OrderService.AddPizza(value); })"></PizzaItem>
+                    </MudItem>
+                }
+            </MudGrid>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="4" lg="4">
+            <MudCard class="fixed" style="margin-right: 20px;">
+                <MudCheckBox @bind-Value="@AdminMode" Label="Mode admin."></MudCheckBox>
+                <MudCardContent>
+                    @if (OrderService.IsEmpty)
+                    {
+                        <MudAlert Severity="Severity.Warning">
+                            Vous hésitez à choisir l'une de nos délicieuses pizzas ? Pourquoi ne pas vous laissez tenter par l'une de nos meilleurs ventes ?
+                        </MudAlert>
+                    }
+                    else if (!OrderService.hasDiscount)
+                    {
+                        <MudAlert Severity="Severity.Info">
+                            Grâce à Massima, ajoutez encore @(3 - OrderService.PizzasCount) pizza(s) pour bénéficier de @OrderService.DiscountRate% de réduction !
+                        </MudAlert>
+                    }
+                    else if (OrderService.hasDiscount)
+                    {
+                        <MudAlert Severity="Severity.Success">
+                            Bravo, grâce à Massima, vous bénéficiez de @OrderService.DiscountRate% de réduction sur votre commande !
+                        </MudAlert>
+                    }
+                    @if (!OrderService.IsEmpty)
+                    {
+                        <MudSimpleTable Hover="true" Bordered="false" Dense="true">
+                            <tbody>
+                                @foreach (KeyValuePair<Pizza, int> entry in OrderService.Items)
+                                {
+                                    <tr>
+                                        <td style="width: 66%;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32"><g fill="none"><path fill="url(#f1956id0)" d="M23.501 29.404L7.738 20.311L6 16L25 4.5l3 3v19.306c0 2.309-2.499 3.752-4.499 2.598" /><path fill="url(#f1956id9)" d="M23.501 29.404L7.738 20.311L6 16L25 4.5l3 3v19.306c0 2.309-2.499 3.752-4.499 2.598" /><path fill="url(#f1956ida)" d="M23.501 29.404L7.738 20.311L6 16L25 4.5l3 3v19.306c0 2.309-2.499 3.752-4.499 2.598" /><path fill="url(#f1956id1)" d="M28 8.02c-8.642.355-16.105 5.279-20.037 12.42l-3.32-1.915c-1.452-.838-1.946-2.716-.948-4.064C10.384 5.436 20.061 2.687 24.941 1.856C26.608 1.572 28 2.898 28 4.59z" /><path fill="url(#f1956idb)" d="M28 8.02c-8.642.355-16.105 5.279-20.037 12.42l-3.32-1.915c-1.452-.838-1.946-2.716-.948-4.064C10.384 5.436 20.061 2.687 24.941 1.856C26.608 1.572 28 2.898 28 4.59z" /><path fill="url(#f1956id2)" d="M28 8.02c-8.642.355-16.105 5.279-20.037 12.42l-3.32-1.915c-1.452-.838-1.946-2.716-.948-4.064C10.384 5.436 20.061 2.687 24.941 1.856C26.608 1.572 28 2.898 28 4.59z" /><path fill="url(#f1956id3)" d="M26 14.5a3.5 3.5 0 1 1-7 0a3.5 3.5 0 0 1 7 0" /><path fill="url(#f1956id4)" d="M26 14.5a3.5 3.5 0 1 1-7 0a3.5 3.5 0 0 1 7 0" /><path fill="url(#f1956id5)" d="M23 25a2 2 0 1 0 0-4a2 2 0 0 0 0 4" /><path fill="url(#f1956id6)" d="M23 25a2 2 0 1 0 0-4a2 2 0 0 0 0 4" /><path fill="#ff3478" d="M18 20.5a2.5 2.5 0 1 1-5 0a2.5 2.5 0 0 1 5 0" /><path fill="url(#f1956id7)" d="M18 20.5a2.5 2.5 0 1 1-5 0a2.5 2.5 0 0 1 5 0" /><path fill="url(#f1956id8)" d="M18 20.5a2.5 2.5 0 1 1-5 0a2.5 2.5 0 0 1 5 0" /><defs><radialGradient id="f1956id0" cx="0" cy="0" r="1" gradientTransform="matrix(-9.87498 12.25 -10.64792 -8.5835 25.313 15.75)" gradientUnits="userSpaceOnUse"><stop stop-color="#ffe657" /><stop offset="1" stop-color="#ffc547" /></radialGradient><radialGradient id="f1956id1" cx="0" cy="0" r="1" gradientTransform="rotate(145.566 7.594 10.642)scale(34.7064 18.3004)" gradientUnits="userSpaceOnUse"><stop offset=".278" stop-color="#ffa060" /><stop offset=".39" stop-color="#ffc48a" /><stop offset=".455" stop-color="#ffc888" /><stop offset=".623" stop-color="#e4af7c" /></radialGradient><radialGradient id="f1956id2" cx="0" cy="0" r="1" gradientTransform="matrix(.5 3.1875 -6.21153 .97436 26.875 4.438)" gradientUnits="userSpaceOnUse"><stop stop-color="#ffe498" /><stop offset="1" stop-color="#ffe398" stop-opacity="0" /></radialGradient><radialGradient id="f1956id3" cx="0" cy="0" r="1" gradientTransform="rotate(137.626 9.472 11.544)scale(4.82223)" gradientUnits="userSpaceOnUse"><stop stop-color="#ff8da2" /><stop offset="1" stop-color="#ff2b43" /></radialGradient><radialGradient id="f1956id4" cx="0" cy="0" r="1" gradientTransform="rotate(101.611 4.145 17.376)scale(4.65782)" gradientUnits="userSpaceOnUse"><stop offset=".393" stop-color="#f63080" /><stop offset="1" stop-color="#f73184" stop-opacity="0" /></radialGradient><radialGradient id="f1956id5" cx="0" cy="0" r="1" gradientTransform="rotate(137.626 7.632 15.92)scale(2.75556)" gradientUnits="userSpaceOnUse"><stop stop-color="#ff8da2" /><stop offset="1" stop-color="#ff2b43" /></radialGradient><radialGradient id="f1956id6" cx="0" cy="0" r="1" gradientTransform="rotate(101.611 1.441 21.422)scale(2.66161)" gradientUnits="userSpaceOnUse"><stop offset=".393" stop-color="#f63080" /><stop offset="1" stop-color="#f73184" stop-opacity="0" /></radialGradient><radialGradient id="f1956id7" cx="0" cy="0" r="1" gradientTransform="rotate(137.626 4.514 13.206)scale(3.44445)" gradientUnits="userSpaceOnUse"><stop stop-color="#ff8da2" /><stop offset="1" stop-color="#ff2b43" /></radialGradient><radialGradient id="f1956id8" cx="0" cy="0" r="1" gradientTransform="rotate(101.611 -1.46 17.25)scale(3.32702)" gradientUnits="userSpaceOnUse"><stop offset=".393" stop-color="#f63080" /><stop offset="1" stop-color="#f73184" stop-opacity="0" /></radialGradient><linearGradient id="f1956id9" x1="13" x2="15.438" y1="24.375" y2="20.5" gradientUnits="userSpaceOnUse"><stop offset=".231" stop-color="#ea9352" /><stop offset=".787" stop-color="#ea9353" stop-opacity="0" /></linearGradient><linearGradient id="f1956ida" x1="28" x2="26.688" y1="15.313" y2="15.313" gradientUnits="userSpaceOnUse"><stop offset=".238" stop-color="#f5c344" /><stop offset=".81" stop-color="#ffd059" stop-opacity="0" /></linearGradient><linearGradient id="f1956idb" x1="5" x2="8.125" y1="19" y2="14.75" gradientUnits="userSpaceOnUse"><stop stop-color="#e79786" /><stop offset=".783" stop-color="#ea8f85" stop-opacity="0" /></linearGradient></defs></g></svg> @entry.Key.Name <small>@($"x {entry.Value}")</small>
+                                        </td>
+                                        <td>
+                                            <strong>@(entry.Key.Price * entry.Value) €</strong>
+                                        </td>
+                                        <td>
+                                            <MudTooltip Text="Retirer cette pizza de ma commande">
+                                                <MudIconButton Icon="@Icons.Material.Filled.DeleteForever" OnClick="() => OrderService.RemovePizza(entry.Key)" Color="Color.Error" />
+                                            </MudTooltip>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </MudSimpleTable>
+
+                        <MudSimpleTable Bordered="false" class="mt-6">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 66%">Sous-total</td>
+                                    <td>@OrderService.SubTotal €</td>
+                                </tr>
+                                @if (OrderService.hasDiscount)
+                                {
+                                    <tr style="background-color: @Colors.Lime.Lighten3; color: #000;">
+                                        <td>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" fill-opacity="0" stroke="currentColor" stroke-dasharray="32" stroke-dashoffset="32" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3L9.65 8.76L3.44 9.22L8.2 13.24L6.71 19.28L12 16M12 3L14.35 8.76L20.56 9.22L15.8 13.24L17.29 19.28L12 16"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="32;0" /><animate fill="freeze" attributeName="fill-opacity" begin="0.5s" dur="0.5s" values="0;1" /><animate attributeName="d" dur="1.5s" repeatCount="indefinite" values="M12 3L9.65 8.76L3.44 9.22L8.2 13.24L6.71 19.28L12 16M12 3L14.35 8.76L20.56 9.22L15.8 13.24L17.29 19.28L12 16;M12 7L10.82 10.38L7.24 10.45L10.1 12.62L9.06 16.05L12 14M12 7L13.18 10.38L16.76 10.45L13.9 12.62L14.94 16.05L12 14;M12 3L9.65 8.76L3.44 9.22L8.2 13.24L6.71 19.28L12 16M12 3L14.35 8.76L20.56 9.22L15.8 13.24L17.29 19.28L12 16" /></path></svg>
+                                            Réduction -@OrderService.DiscountRate%
+                                        </td>
+                                        <td>@OrderService.DiscountAmount €</td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <td>TVA (@OrderService.VATRate%)</td>
+                                    <td>@OrderService.VATSubTotal €</td>
+                                </tr>
+                                <tr style="background-color: @Colors.Teal.Darken4; color: @Colors.Teal.Lighten5;">
+                                    <td>A payer</td>
+                                    <td>
+                                        <strong>@OrderService.Total €</strong><br />
+                                        <small>@OrderService.PizzasCount @(@OrderService.PizzasCount > 1 ? "pizzas" : "pizza")</small>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </MudSimpleTable>
+                    }
+                </MudCardContent>
+                @if (!OrderService.IsEmpty)
+                {
+                    <MudCardActions class="justify-space-between">
+                        <MudButton Variant="Variant.Text" Color="Color.Primary">
+                            <MudTooltip Text="Recommencer ma commande">
+                                <MudIconButton Icon="@Icons.Material.Filled.RemoveShoppingCart" OnClick="ResetOrder" Color="Color.Error" />
+                            </MudTooltip>
+                        </MudButton>
+                        <MudTooltip Text="Procéder au paiement">
+                            <MudIconButton Icon="@Icons.Material.Filled.ShoppingCartCheckout" Color="Color.Success" />
+                        </MudTooltip>
+                    </MudCardActions>
+                }
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</CascadingValue>
+@code {
+    List<Pizza> pizzas;
+    bool AdminMode { get; set; } = false;
+
+    public async void ResetOrder()
+    {
+        var options = new DialogOptions { CloseOnEscapeKey = true };
+        var result = await DialogService.Show<ResetOrderDialog>("Recommancer ma commande", options).Result;
+        if (!result.Canceled)
+        {
+            OrderService.Empty();
+            StateHasChanged();
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        pizzas = PizzaService.GetAll();
+    }
+
+    public async void AddEditPizza(Pizza? pizza = null)
+    {
+        if (pizza == null)
+            pizza = new Pizza();
+
+        var options = new DialogOptions { CloseOnEscapeKey = true, MaxWidth = MaxWidth.Medium, FullWidth = true };
+        var parameters = new DialogParameters();
+        parameters.Add("Pizza", pizza);
+        var result = await DialogService.Show<AddEditPizzaDialog>("Recommencer ma commande", parameters, options).Result;
+        if (!result.Canceled)
+        {
+            Pizza pizzaFromDialog = (Pizza)result.Data;
+            PizzaService.Add(pizzaFromDialog);
+            pizzas = PizzaService.GetAll();
+            StateHasChanged();
+        }
+    }
+
+    public async void DeletePizza(Pizza pizza)
+    {
+        PizzaService.DeletePizza(pizza);
+        pizzas = PizzaService.GetAll();
+    }
+}

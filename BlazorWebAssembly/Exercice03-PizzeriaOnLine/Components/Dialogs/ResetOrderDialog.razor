@@ -1,0 +1,16 @@
+﻿<MudDialog>
+    <DialogContent>
+       Confirmez-vous la suppression de votre commande ?<br />
+       <small>Il s'agit là d'une opération irréversible.</small>
+    </DialogContent>
+    <DialogActions>
+        <MudButton Color="Color.Primary" OnClick="Cancel">Annuler</MudButton>
+        <MudButton OnClick="Submit">Confirmer</MudButton>
+    </DialogActions>
+</MudDialog>
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
+}
