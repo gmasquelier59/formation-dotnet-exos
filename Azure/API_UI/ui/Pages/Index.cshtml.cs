@@ -19,6 +19,15 @@ public class IndexModel : PageModel
     {
         HttpClient client = new HttpClient();
 
-        Weathers = await client.GetFromJsonAsync<List<Weather>>("http://4.232.152.51/weatherforecast");
+        // Avec l'IP publique
+        // Weathers = await client.GetFromJsonAsync<List<Weather>>("http://4.232.152.51/weatherforecast");
+
+        // Avec l'IP privée
+        // Weathers = await client.GetFromJsonAsync<List<Weather>>("http://10.1.1.16/weatherforecast");
+
+        // Avec le nom d'hôte (recommandé)
+        Weathers = await client.GetFromJsonAsync<List<Weather>>("http://pc1/weatherforecast");
+
+        //Weathers = await client.GetFromJsonAsync<List<Weather>>("https://localhost:7199/weatherforecast");
     }
 }
